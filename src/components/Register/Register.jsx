@@ -21,7 +21,7 @@ export default function Register() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        console.log("sending data", formData)
+
         try {
             const data = await register(formData)
             setToken(data.token)
@@ -45,7 +45,7 @@ export default function Register() {
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
 
-                <div className="registerForm">
+                <div className={styles.registerForm}>
                     <label htmlFor="username">Username</label>
                     <input 
                     type="text"
@@ -58,7 +58,7 @@ export default function Register() {
                     { errors.username && <p className="error-message">{errors.username}</p> }
                 </div>
 
-                <div className="registerForm">
+                <div className={styles.registerForm}>
                     <label htmlFor="email">Email</label>
                     <input 
                         type="email"
@@ -71,7 +71,7 @@ export default function Register() {
                     { errors.email && <p className='error-message'>{errors.email}</p> }
                 </div>
 
-                <div className="registerForm">
+                <div className={styles.registerForm}>
                     <label htmlFor="password">Password</label>
                     <input 
                         type="password"
@@ -84,8 +84,9 @@ export default function Register() {
                     { errors.password && <p className='error-message'>{errors.password}</p> }
                     </div>
 
-                    <button disabled={formData.password === ""} 
-                    type="submit" className="button">Submit</button>                
+                    <button type="submit" disabled={formData.password === ""} className={styles.button}>
+                        Submit
+                    </button>                
             </form>
             
         </section>

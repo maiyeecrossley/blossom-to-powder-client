@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Sriracha&display=swap');
+
+:root {
+    --text-primary: #434242;
+    --text-secondary: #555555;
+    --background-primary: #F8F6F0;
+    --background-secondary: #EAE0D5;
+    --background-tertiary: #C1D3C8;
+    --cherry-blossom: #ffc7e8;
+    --autumn-leaf: #D88A1A; 
+    --forest-green: #9fae80; 
+    --misty-blue: #718B9A;
+    --border: #A5A5A5;
+    --brand: #D88A1A;
+    --brand-hover: #B76E1B;
+    --brand-disabled: #9E5C16;
+    --error: #E74C3C;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+body {
+    background-color: var(--background-primary);
+}
+
+
+main {
+    margin: 0;
+    background-color:var(--background-tertiary);
+    flex-grow: 1;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+nav {
+    background-color: var(--background-tertiary);
+}
+
+div {
+    background-color: var(--background-tertiary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    font-family: "Sriracha", serif;
+    color:var(--text-primary)
+}
+
+
+html {
+    background-color: var(--background-tertiary);
+}
+
+.site-name{
+
+    color: white;
+}
+.tagline{
+
+    color: white;
+}
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+.button {
+  font-family: "Merriweather", serif;
+  font-size: 18px;
+  color: var(--text-primary);
+  background-color: var(--brand);
+  border: none;
+  margin: 0.3rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+.button:hover {
+  background-color: var(--brand-hover);
+}
+.button:disabled {
+  background-color: var(--brand-disabled);
+  cursor: not-allowed;
+}
+.tagline {
+    font-family: "Merriweather", sans-serif;
+    font-size: 22px;
+
+  }

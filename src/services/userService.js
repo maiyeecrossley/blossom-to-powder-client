@@ -14,3 +14,15 @@ export const register = async(formData) => {
     }
 
 }
+
+export const login = async(formData) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/auth/login/`, formData)
+
+        return response.data
+    } catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+
+}
