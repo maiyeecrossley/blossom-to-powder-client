@@ -7,6 +7,7 @@ import Login from "./components/Login/Login"
 import SeasonalLocations from './components/SeasonalLocations/SeasonalLocations'
 import Seasons from './components/Seasons/Seasons'
 import AllLocations from './components/AllLocations/AllLocations'
+import AllItineraries from './components/AllItineraries/AllItineraries'
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
       <NavLink to = "/auth/login/">Login </NavLink>
       <NavLink to = "/seasons/">Explore Seasons </NavLink>
       <NavLink to = "/locations/">All Locations </NavLink>
+      <NavLink to = "/itineraries/">My Trips </NavLink>
 
     </nav>
     <main>
@@ -28,6 +30,7 @@ function App() {
         <Route path="/locations/" element={<AllLocations />} />
         <Route path="/seasons/:seasonId/locations/" element={<SeasonalLocations />} />
         <Route path="/seasons/" element={<Seasons />} />
+        <Route path="/itineraries/" element={<AllItineraries />} />
       
       </Routes>
     </main>

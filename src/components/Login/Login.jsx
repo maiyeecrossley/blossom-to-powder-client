@@ -33,12 +33,12 @@ const handleSubmit = async (event) => {
         navigate("/")
 
     } catch (error) {
-        setErrors(error.reponse.data.message) 
+        setErrors(error.message)
     }
 }
 
 const handleChange = (event) => {
-    setErrors({ ...errors, [e.target.name]: '' })
+    setErrors({ ...errors, [event.target.name]: '' })
     setFormData({ ...formData, [event.target.name]: event.target.value })
 }
 
