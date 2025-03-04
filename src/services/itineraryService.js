@@ -26,10 +26,9 @@ export const itineraryShow = async (itineraryId) => {
                 Authorization: `Bearer ${getToken()}`,
             }
         })
-        console.log("Itinerary data received:", response.data)
         return response.data
     } catch (error) {
-        console.log("error fetching single itinerary", error.response?.data)
+        console.log(error)
         throw error
     }
 }

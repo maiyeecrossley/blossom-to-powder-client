@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react"
+import { Link } from "react-router"
 import { itineraryIndex } from "../../services/itineraryService"
 import { UserContext } from "../../contexts/UserContext"
 
@@ -29,11 +30,13 @@ export default function AllItineraries() {
                 : itineraries.length > 0
                 ? itineraries.map((itinerary) => {
                     return (
+                        <Link to={`/itineraries/${itinerary.id}`}>
                         <div className={styles.itineraryCard} key={itinerary.id}>
                             <h3>{itinerary.trip_name}</h3>
-                            <p>Start date: {itinerary.trip_start_date}</p>
-                            <p>End date: {itinerary.trip_end_date}</p>
+                            <p>Start date: {new Date(itinerary.trip_start_date).toDateString()}</p>
+                            <p>End date: {new Date(itinerary.trip_end_date).toDateString()}</p>
                         </div>
+                        </Link>
                     )
                 })
                 : <p>No itineraries found</p>

@@ -25,3 +25,17 @@ export const seasonLocationIndex = async (seasonId) => {
         throw error
     }
 }
+
+export const updateLocationVisitDate = async (locationId, visitDate) => {
+    try {
+        const response = await axios.patch(`${BASE_URL}/itineraries/${itineraryId}/edit`, locationId, visitDate, {
+            headers: {
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
+        return response.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
