@@ -3,6 +3,7 @@ import { getToken } from "../utils/auth"
 
 const BASE_URL = import.meta.env.VITE_API_URL
 
+
 export const itineraryIndex = async () => {
     try {
         const response = await axios.get(`${BASE_URL}/itineraries/`, {
@@ -17,3 +18,18 @@ export const itineraryIndex = async () => {
     }
 }
 
+
+export const itineraryShow = async (itineraryId) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/itineraries/${itineraryId}/`, {
+            headers: {
+                Authorization: `Bearer ${getToken()}`,
+            }
+        })
+        console.log("Itinerary data received:", response.data)
+        return response.data
+    } catch (error) {
+        console.log("error fetching single itinerary", error.response?.data)
+        throw error
+    }
+}

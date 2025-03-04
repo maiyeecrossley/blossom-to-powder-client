@@ -8,6 +8,7 @@ import SeasonalLocations from './components/SeasonalLocations/SeasonalLocations'
 import Seasons from './components/Seasons/Seasons'
 import AllLocations from './components/AllLocations/AllLocations'
 import AllItineraries from './components/AllItineraries/AllItineraries'
+import SingleItinerary from './components/SingleItinerary/SingleItinerary'
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
         <Route path="/seasons/:seasonId/locations/" element={<SeasonalLocations />} />
         <Route path="/seasons/" element={<Seasons />} />
         <Route path="/itineraries/" element={<AllItineraries />} />
+        <Route path="/itineraries/:itineraryId/" element={<SingleItinerary />} />
       
       </Routes>
     </main>
