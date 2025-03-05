@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from "react"
-import { useParams, Link } from "react-router"
-import { itineraryShow } from "../../services/itineraryService"
+import { useParams, Link, useNavigate } from "react-router"
+import { itineraryDelete, itineraryShow } from "../../services/itineraryService"
 import { UserContext } from "../../contexts/UserContext"
 
 import styles from "./SingleItinerary.module.css"
-import { addLocationVisitDate } from "../../services/locationService"
-import { updateLocationVisitDate } from "../../services/locationService"
+import { addLocationVisitDate, updateLocationVisitDate } from "../../services/locationService"
+
 
 export default function SingleItinerary() {
 
@@ -16,6 +16,7 @@ export default function SingleItinerary() {
 
     const { itineraryId } = useParams()
     const { user } = useContext(UserContext)
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -63,9 +64,22 @@ export default function SingleItinerary() {
         }
     }
 
+    const handleDelete = async () => {
+        const confirmDelete = window.confirm("are you sure you want to delete this trip?")
+        if (confirmDelete) {
+            try {
+                await itineraryDelete(itineraryId)
+                navigate(`/itineraries/`)
+            } catch (error) {
+                console.log("failed to delete itinerary", error)
+            }
+        }
+    }
+
     return (
         <main>
             <section>
+            <h1>Trip name: {itinerary?.trip_name}</h1>
                 <h1>
                     {itinerary?.trip_start_date
                         ? new Date(itinerary.trip_start_date).toDateString()
@@ -78,6 +92,9 @@ export default function SingleItinerary() {
                     <Link to={`/itineraries/${itineraryId}/edit/`} className={styles.button}>
                         Edit your trip
                     </Link>
+                    <button onClick={handleDelete} className={styles.button}>
+                        Delete this trip
+                    </button>
                 </div>
 
                 {isLoading

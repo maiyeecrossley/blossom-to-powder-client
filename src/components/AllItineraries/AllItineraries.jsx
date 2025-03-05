@@ -25,7 +25,7 @@ export default function AllItineraries() {
     return (
         <main>
             <section>
-                <h1>{user?.username}'s Trips</h1>
+                <h1>Your upcoming trips:</h1>
 
                 <div>
                     <Link to={`/itineraries/create`} className={styles.button}>
@@ -39,8 +39,8 @@ export default function AllItineraries() {
                 ? itineraries.map((itinerary) => {
                     return (
                         
-                        <Link to={`/itineraries/${itinerary.id}`}>
-                        <div className={styles.itineraryCard} key={itinerary.id}>
+                        <Link to={`/itineraries/${itinerary.id}`} key={itinerary.id}>
+                        <div className={styles.itineraryCard}>
                             <h3>{itinerary.trip_name}</h3>
                             <p>Start date: {new Date(itinerary.trip_start_date).toDateString()}</p>
                             <p>End date: {new Date(itinerary.trip_end_date).toDateString()}</p>
