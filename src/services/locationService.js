@@ -67,7 +67,7 @@ export const addLocationToItinerary = async (itineraryId, locationId, visitDate 
         })
         return response.data;
     } catch (error) {
-        console.error("Error adding location to itinerary:", error.response?.data || error.message);
+        console.error(error);
         throw error;
     }
 };
