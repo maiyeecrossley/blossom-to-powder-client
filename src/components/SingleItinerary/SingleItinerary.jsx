@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react"
-import { useNavigate, Link, useParams } from "react-router"
+import { useParams } from "react-router"
 import { itineraryShow } from "../../services/itineraryService"
 import { UserContext } from "../../contexts/UserContext"
 
 import styles from "./SingleItinerary.module.css"
-import AllLocations from "../AllLocations/AllLocations"
+import { addLocationVisitDate } from "../../services/locationService"
 import { updateLocationVisitDate } from "../../services/locationService"
 
 export default function SingleItinerary() {
@@ -14,7 +14,7 @@ export default function SingleItinerary() {
     const [editLocationId, setEditLocationId] = useState(null)
     const [selectedDate, setSelectedDate] = useState("")
 
-    const { itineraryId, locationId } = useParams()
+    const { itineraryId } = useParams()
     const { user } = useContext(UserContext)
 
 
@@ -24,8 +24,8 @@ export default function SingleItinerary() {
         setIsLoading(true)
         itineraryShow(itineraryId)
             .then(data => {
-
-                setItinerary(data)
+                if (data?.locations)
+                    setItinerary(data)
             })
             .catch(error => {
                 console.log("Error getting itinerary", error)
@@ -34,63 +34,102 @@ export default function SingleItinerary() {
     }, [itineraryId])
 
 
-    const handleDateSave = async (locationId) => {
+
+    const handleDateSave = async (editLocationId, existingDate) => {
         if (!selectedDate) return
 
         try {
-            await updateLocationVisitDate(locationId, selectedDate)
+            let updatedItinerary
+            if (!existingDate) {
+                updatedItinerary = await addLocationVisitDate(itineraryId, editLocationId, selectedDate)
+            } else {
+                updatedItinerary = await updateLocationVisitDate(itineraryId, editLocationId, selectedDate)
+            }
+
+
+            setItinerary((prevItinerary) => ({
+                ...prevItinerary,
+                locations: prevItinerary.locations.map((location) =>
+                    location.location?.id === editLocationId
+                        ? { ...location, location_visit_date: selectedDate }
+                        : location
+                )
+            }))
+
+            setEditLocationId(null)
+            setSelectedDate("")
         } catch (error) {
+            console.error("Error updating date", error);
         }
     }
 
     return (
         <main>
             <section>
-                <h1>My Itinerary: {itinerary?.trip_start_date
-                    ? new Date(itinerary.trip_start_date).toDateString()
-                    : "Start date not set"} -
+                <h1>
+                    {itinerary?.trip_start_date
+                        ? new Date(itinerary.trip_start_date).toDateString()
+                        : "Start date not set"} - {" "}
                     {itinerary?.trip_end_date
                         ? new Date(itinerary.trip_end_date).toDateString()
-                        : "End date not set"}</h1>
+                        : "End date not set"}
+                </h1>
 
                 {isLoading
                     ? <p>Loading Locations...</p>
                     : itinerary
                         ? <div>
                             <h3>Locations:</h3>
-                            {itinerary.locations.length > 0
-                                ? itinerary.locations.map((location) => (
-                                    <div key={location.id} className={styles.locationCard}>
-                                        <h4>{location.name}</h4>
-                                        <p>{location.description}</p>
+                            {itinerary?.locations?.length > 0
+                                ? itinerary.locations.map((locationData) => (
+                                    <div key={locationData.id} className={styles.locationCard}>
+                                        <h4>{locationData.location?.name}</h4>
+                                        <p>{locationData.location?.description}</p>
 
-                                        {location.location_visit_date
-                                            ? <p>Visit Date: {new Date(location.location_visit_date).toLocaleDateString("en-GB")}</p>
-                                            : <div>
-                                                {editLocationId === location.id
-                                                    ?
-                                                    <div>
-                                                        <input
-                                                            type="date"
-                                                            value={selectedDate}
-                                                            onChange={(e) => setSelectedDate(e.target.value)}
-                                                        />
-                                                        <button onClick={() => handleDateSave(location.id)}>Save</button>
-                                                    </div>
-                                                    : <button onClick={() => setEditLocationId(location.id)}>Add a Date</button>
-                                                }
+                                        <p>Visit Date:{" "}
+                                            {locationData.location_visit_date
+                                                ? new Date(locationData.location_visit_date).toLocaleDateString("en-GB")
+                                                : "No date set"}
+                                        </p>
+
+                                        {editLocationId === locationData.location.id
+                                            ? <div>
+                                                <input
+                                                    type="date"
+                                                    value={selectedDate}
+                                                    onChange={(event) => setSelectedDate(event.target.value)} />
+                                                <button onClick={() => handleDateSave(editLocationId, locationData.location_visit_date || null)}>
+                                                    Save
+                                                </button>
+
+                                                <button onClick={() => setEditLocationId(null)}>
+                                                    Cancel
+                                                </button>
                                             </div>
+
+                                            : locationData.location_visit_date
+                                                ? <button onClick={() => {
+                                                    setEditLocationId(locationData.location?.id)
+                                                    setSelectedDate(locationData.location_visit_date || "")
+                                                }}>
+                                                    Edit date
+                                                </button>
+
+                                                : <button onClick={() => {
+                                                    setEditLocationId(locationData.location?.id)
+                                                    setSelectedDate("")
+                                                }}>
+                                                    Add visit date
+                                                </button>
                                         }
                                     </div>
                                 ))
                                 : <p>No locations added yet.</p>
                             }
                         </div>
-                        :
-                        <p>Itinerary not found</p>
+                        : <p>Itinerary not found</p>
                 }
             </section>
         </main>
-
     )
 }

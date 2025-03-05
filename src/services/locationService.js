@@ -26,10 +26,11 @@ export const seasonLocationIndex = async (seasonId) => {
     }
 }
 
-export const updateLocationVisitDate = async (locationId, visitDate) => {
+export const addLocationVisitDate = async (itineraryId, locationId, visitDate) => {
     try {
-        const response = await axios.patch(`${BASE_URL}/itineraries/${itineraryId}/edit`, locationId, visitDate, {
-            headers: {
+        const response = await axios.post(`${BASE_URL}/itineraries/${itineraryId}/locations/`,
+            { location_id: locationId, location_visit_date: visitDate || null },
+            { headers: {
                 Authorization: `Bearer ${getToken()}`
             }
         })
@@ -39,3 +40,34 @@ export const updateLocationVisitDate = async (locationId, visitDate) => {
         throw error
     }
 }
+
+export const updateLocationVisitDate = async (itineraryId, locationId, visitDate) => {
+    try {
+        const response = await axios.patch(`${BASE_URL}/itineraries/${itineraryId}/locations/${locationId}/`, 
+            { location_visit_date: visitDate },
+            { headers: {
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
+        console.log("API Response:", response.data)
+        return response.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export const addLocationToItinerary = async (itineraryId, locationId, visitDate = null) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/itineraries/${itineraryId}/locations/`,
+            { location_id: locationId, location_visit_date: visitDate },
+            { headers: { 
+                Authorization: `Bearer ${getToken()}` 
+            }
+        })
+        return response.data;
+    } catch (error) {
+        console.error("Error adding location to itinerary:", error.response?.data || error.message);
+        throw error;
+    }
+};
