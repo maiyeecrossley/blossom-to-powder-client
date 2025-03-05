@@ -32,3 +32,18 @@ export const itineraryShow = async (itineraryId) => {
         throw error
     }
 }
+
+
+export const itineraryCreate = async (itineraryData) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/itineraries/create/`, itineraryData, {
+            headers: { 
+                Authorization: `Bearer ${getToken()}`,
+            } 
+        })
+        return response.data;
+    } catch (error) {
+        console.log( error)
+        throw error
+    }
+}

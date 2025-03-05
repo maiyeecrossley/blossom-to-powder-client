@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
 import { itineraryIndex } from "../../services/itineraryService"
 import { UserContext } from "../../contexts/UserContext"
 
@@ -10,6 +10,7 @@ export default function AllItineraries() {
     const [itineraries, setItineraries] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const { user } = useContext(UserContext)
+    const location = useLocation()
 
     useEffect(() => {
         if (!user) return 
@@ -18,7 +19,7 @@ export default function AllItineraries() {
         .then (data => setItineraries(data))
         .catch (error => console.log("Error getting itineraries", error))
         .finally(() => setIsLoading(false))
-    }, [user])
+    }, [user, location.state])
 
 
     return (
