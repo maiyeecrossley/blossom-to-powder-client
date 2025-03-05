@@ -70,4 +70,4 @@ export const addLocationToItinerary = async (itineraryId, locationId, visitDate 
         console.error(error)
         throw error
     }
-};
+}
