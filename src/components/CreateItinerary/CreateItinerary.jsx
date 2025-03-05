@@ -56,14 +56,15 @@ export default function CreateItinerary() {
             <form onSubmit={handleSubmit} className={styles.form}>
 
                 <div className={styles.itineraryForm}>
-                    <label htmlFor="trip_name">Trip Name:</label>
-                    <input
-                    type="text"
-                    name="trip_name"
-                    id="trip_name"
-                    value={itineraryData.trip_name}
-                    placeholder="My Japan Trip"
-                    onChange={handleChange}
+                        <label htmlFor="trip_name">Trip Name:</label>
+                        <input
+                        type="text"
+                        name="trip_name"
+                        id="trip_name"
+                        value={itineraryData.trip_name}
+                        placeholder="My Japan Trip"
+                        onChange={handleChange}
+                        required
                     />
                 </div>
                 
@@ -75,6 +76,7 @@ export default function CreateItinerary() {
                         id="trip_start_date"
                         value={itineraryData.trip_start_date}
                         onChange={handleChange}
+                        required
                     />
                 </div>
 
@@ -86,6 +88,7 @@ export default function CreateItinerary() {
                         id="trip_end_date"
                         value={itineraryData.trip_end_date}
                         onChange={handleChange}
+                        required
                     />
                 </div>
 

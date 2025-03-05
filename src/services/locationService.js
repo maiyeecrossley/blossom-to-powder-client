@@ -65,9 +65,9 @@ export const addLocationToItinerary = async (itineraryId, locationId, visitDate 
                 Authorization: `Bearer ${getToken()}` 
             }
         })
-        return response.data;
+        return response.data
     } catch (error) {
-        console.error(error);
-        throw error;
+        console.error(error)
+        throw error
     }
 };

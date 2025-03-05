@@ -47,3 +47,31 @@ export const itineraryCreate = async (itineraryData) => {
         throw error
     }
 }
+
+export const itineraryUpdate = async (itineraryId, itineraryData) => {
+    try {
+        const response = await axios.patch(`${BASE_URL}/itineraries/${itineraryId}/edit/`, itineraryData, {
+            headers: {
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
+        return response.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export const itineraryDelete = async (itineraryId) => {
+    try {
+        const response = await axios.delete(`${BASE_URL}/itineraries/${itineraryId}/`, {
+            headers: {
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
+        return response.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}

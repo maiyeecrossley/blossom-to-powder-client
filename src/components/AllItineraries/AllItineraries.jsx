@@ -26,16 +26,25 @@ export default function AllItineraries() {
         <main>
             <section>
                 <h1>{user?.username}'s Trips</h1>
+
+                <div>
+                    <Link to={`/itineraries/create`} className={styles.button}>
+                        Add new trip!
+                    </Link>
+                </div>
+        
                 {isLoading
                 ? <p>Loading Itineraries...</p>
                 : itineraries.length > 0
                 ? itineraries.map((itinerary) => {
                     return (
+                        
                         <Link to={`/itineraries/${itinerary.id}`}>
                         <div className={styles.itineraryCard} key={itinerary.id}>
                             <h3>{itinerary.trip_name}</h3>
                             <p>Start date: {new Date(itinerary.trip_start_date).toDateString()}</p>
                             <p>End date: {new Date(itinerary.trip_end_date).toDateString()}</p>
+                                                        
                         </div>
                         </Link>
                     )

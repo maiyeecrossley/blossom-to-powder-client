@@ -10,6 +10,7 @@ import AllLocations from './components/AllLocations/AllLocations'
 import AllItineraries from './components/AllItineraries/AllItineraries'
 import SingleItinerary from './components/SingleItinerary/SingleItinerary'
 import CreateItinerary from './components/CreateItinerary/CreateItinerary'
+import UpdateItinerary from './components/UpdateItinerary/UpdateItinerary'
 
 function App() {
   
@@ -23,7 +24,6 @@ function App() {
       <NavLink to = "/seasons/">Explore Seasons </NavLink>
       <NavLink to = "/locations/">All Locations </NavLink>
       <NavLink to = "/itineraries/">My Trips </NavLink>
-      <NavLink to = "/itineraries/create/">Create trip </NavLink>
 
     </nav>
     <main>
@@ -36,6 +36,7 @@ function App() {
         <Route path="/itineraries/" element={<AllItineraries />} />
         <Route path="/itineraries/create/" element={<CreateItinerary />} />
         <Route path="/itineraries/:itineraryId/" element={<SingleItinerary />} />
+        <Route path="/itineraries/:itineraryId/edit/" element={<UpdateItinerary />} />
       
       </Routes>
     </main>

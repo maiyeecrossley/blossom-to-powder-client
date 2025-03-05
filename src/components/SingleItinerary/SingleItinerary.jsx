@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { useParams } from "react-router"
+import { useParams, Link } from "react-router"
 import { itineraryShow } from "../../services/itineraryService"
 import { UserContext } from "../../contexts/UserContext"
 
@@ -74,6 +74,11 @@ export default function SingleItinerary() {
                         ? new Date(itinerary.trip_end_date).toDateString()
                         : "End date not set"}
                 </h1>
+                <div>
+                    <Link to={`/itineraries/${itineraryId}/edit/`} className={styles.button}>
+                        Edit your trip
+                    </Link>
+                </div>
 
                 {isLoading
                     ? <p>Loading Locations...</p>
