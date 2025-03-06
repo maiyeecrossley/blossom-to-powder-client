@@ -3,10 +3,10 @@ import { useParams, Link } from "react-router"
 import { UserContext } from "../../contexts/UserContext"
 import { locationIndex, addLocationToItinerary } from "../../services/locationService"
 import { itineraryIndex } from "../../services/itineraryService"
-
-import Multiselect from "multiselect-react-dropdown"
+import { Container, Row } from "react-bootstrap"
 
 import styles from "./AllLocations.module.css"
+import LocationItem from "../LocationItem/LocationItem"
 
 export default function AllLocations() {
 
@@ -14,7 +14,6 @@ export default function AllLocations() {
     const [itineraries, setItineraries] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [selectedItineraries, setSelectedItineraries] = useState({})
-    const [openDropdown, setOpenDropdown] = useState(null)
 
     const { locationId } = useParams()
     const { user } = useContext(UserContext)
@@ -45,12 +44,11 @@ export default function AllLocations() {
             .finally(() => setIsLoading(false))
     }, [])
 
+
     const handleSelectChange = (selectedList, locationId) => {
-        setSelectedItineraries(prev => ({
-            ...prev,
-            [locationId]: selectedList.map(itinerary => itinerary.id),
-        }));
-    };
+        setSelectedItineraries(prev => ({...prev, [locationId]: selectedList.map(itinerary => itinerary.id),
+        }))
+    }
     
     const handleConfirmSelection = async (locationId) => {
         const selectedIds = selectedItineraries[locationId] || [];
@@ -71,39 +69,20 @@ export default function AllLocations() {
                 {isLoading 
                 ? <p>Loading locations...</p>
                 : locations.length > 0 
-                ? <ul> {locations.map((location) => (
-                    <li key={location.id}>{location.name}
-
-                        <div className={styles.dropdownContainer}>
-                        <Multiselect
-                            options={itineraries}
-                            selectedValues={itineraries.filter((itinerary) =>
-                                selectedItineraries[location.id]?.includes(itinerary.id)
-                            )}
-                            onSelect={(selectedList) => handleSelectChange(selectedList, location.id)}
-                            onRemove={(selectedList) => handleSelectChange(selectedList, location.id)}
-                            displayValue="trip_name"
-                            showCheckbox
-                            className={styles.multiSelect}
-                            style={{
-                                multiselectContainer: { width: "260px" },
-                                chips: {background: "var(--autumn-leaf"},
-                                searchBox: { background: "var(--background-secondary)", border: "2px solid var(--border)", borderRadius: "8px" },
-                                optionContainer: { background: "var(--background-primary)", borderRadius: "8px", padding: "5px" },
-                                option: { background: "var(--background-tertiary)", color: "var(--text-primary)", padding: "8px" },
-                                highlightOption: { background: "var(--cherry-blossom)", color: "var(--text-primary)" },
-                                inputField: { color: "var(--text-secondary)" },
-                                
-                            }}
-                        />
-                            
-                            <button className={styles.button} onClick={() => handleConfirmSelection(location.id)}>
-                                Save
-                            </button>
-                        </div>
-                    </li>
+                ? <Container>
+                    <Row>
+                        {locations.map((location) => (
+                                <LocationItem
+                                    key={location.id}
+                                    location={location}
+                                    itineraries={itineraries}
+                                    selectedItineraries={selectedItineraries}
+                                    handleSelectChange={handleSelectChange}
+                                    handleConfirmSelection={handleConfirmSelection}
+                                    user={user} />
                 ))}
-                </ul>
+                </Row>
+                </Container>
                 : <p>No locations available.</p>
                 }
             </section>

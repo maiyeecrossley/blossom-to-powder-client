@@ -1,5 +1,6 @@
 import './App.css'
 import { Routes, Route, NavLink } from "react-router"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Register from "./components/Register/Register"
 import Login from "./components/Login/Login"

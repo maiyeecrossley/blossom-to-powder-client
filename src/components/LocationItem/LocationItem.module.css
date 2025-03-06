@@ -1,0 +1,65 @@
+
+
+.multiSelect {
+    width: 100%;
+    max-width: 260px;
+    font-family: "Merriweather", serif;
+}
+
+.multiSelect input {
+    color: var(--text-secondary) !important;
+}
+
+
+.multiSelect input[type="checkbox"] {
+    accent-color: var(--misty-blue) !important;
+}
+
+.button {
+    font-family: "Merriweather", serif;
+    font-size: 12px;
+    color: white;
+    background-color: var(--forest-green);
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: var(--misty-blue);
+}
+
+
+.locationCard {
+    max-width: 350px;
+    margin: 10px auto; 
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-primary);
+    font-size: 14px;
+    font-family: "Merriweather", serif;
+}
+
+.dropdownContainer {
+    margin-top: 10px;
+}
+
+
+.saveButton {
+    background-color: var(--forest-green);
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-family: "Merriweather", serif;
+}
+
+.saveButton:hover {
+    background-color: var(--misty-blue);
+}
