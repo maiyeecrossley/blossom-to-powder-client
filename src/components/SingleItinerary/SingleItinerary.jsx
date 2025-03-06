@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams, Link, useNavigate } from "react-router"
 import { itineraryDelete, itineraryShow } from "../../services/itineraryService"
+import { addLocationVisitDate, updateLocationVisitDate, removeLocationFromItinerary } from "../../services/locationService"
 import { UserContext } from "../../contexts/UserContext"
 
 import styles from "./SingleItinerary.module.css"
-import { addLocationVisitDate, updateLocationVisitDate } from "../../services/locationService"
 
 
 export default function SingleItinerary() {
@@ -76,6 +76,25 @@ export default function SingleItinerary() {
         }
     }
 
+    const handleRemoveLocation = async (locationId) => {
+        const confirmRemove = window.confirm("Are you sure you want to remove this location?")
+        if (!confirmRemove) return
+
+        try {
+            await removeLocationFromItinerary(itineraryId, locationId)
+            setItinerary((prevItinerary) => ({...prevItinerary,
+                locations: prevItinerary.locations.filter((location) => location.location.id !== locationId),
+            }))
+
+            const updatedItinerary = await itineraryShow(itineraryId)
+            setItinerary(updatedItinerary)
+
+            alert("Location removed successfully!")
+        } catch (error) {
+            console.error("Error removing location from itinerary:", error)
+        }
+    }
+
     return (
         <main>
             <section>
@@ -139,14 +158,19 @@ export default function SingleItinerary() {
 
                                                 : <button onClick={() => {
                                                     setEditLocationId(locationData.location?.id)
-                                                    setSelectedDate("")
-                                                }}>
+                                                    setSelectedDate("")}}>
                                                     Add visit date
                                                 </button>
                                         }
+                                            
+                                            <button onClick={() => handleRemoveLocation(locationData.location.id)} className={styles.removeButton}>
+                                                Remove Location
+                                            </button>
                                     </div>
                                 ))
-                                : <p>No locations added yet.</p>
+                                : <div><p>No locations added yet! 
+                                <Link to={`/locations/`} className={styles.button}>Browse where to go!</Link>
+                                </p></div>
                             }
                         </div>
                         : <p>Itinerary not found</p>

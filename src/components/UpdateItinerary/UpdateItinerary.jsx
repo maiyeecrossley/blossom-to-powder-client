@@ -47,7 +47,7 @@ export default function UpdateItinerary() {
 
         try {
             await itineraryUpdate(itineraryId, itineraryData);
-            navigate("/itineraries/")
+            navigate(`/itineraries/${itineraryId}`)
         } catch (error) {
             setErrors({ message: "Failed to update itinerary, please try again." })
         }
