@@ -49,7 +49,7 @@ export const updateLocationVisitDate = async (itineraryId, locationId, visitDate
                 Authorization: `Bearer ${getToken()}`
             }
         })
-        console.log("API Response:", response.data)
+        
         return response.data
     } catch (error) {
         console.log(error)
@@ -68,6 +68,20 @@ export const addLocationToItinerary = async (itineraryId, locationId, visitDate 
         return response.data
     } catch (error) {
         console.error(error)
+        throw error
+    }
+}
+
+export const removeLocationFromItinerary = async (itineraryId, locationId) => {
+    try {
+        const response = await axios.delete(`${BASE_URL}/itineraries/${itineraryId}/locations/${locationId}/`, {
+            headers: { 
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
+        return response.data
+    } catch (error) {
+        console.log(error)
         throw error
     }
 }
