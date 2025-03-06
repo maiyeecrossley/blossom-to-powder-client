@@ -6,25 +6,30 @@ import { seasonIndex } from "../../services/seasonsService"
 import styles from "./Seasons.module.css"
 
 export default function Seasons() {
-    const [seasons, setSeasons] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [filterByMonth, setFilterByMonth] = useState(false);
+    const [seasons, setSeasons] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [filterByMonth, setFilterByMonth] = useState(false)
+    const [expandedSeasons, setExpandedSeasons] = useState({})
 
     useEffect(() => {
-        const startMonth = filterByMonth ? 3 : null;
-        const endMonth = filterByMonth ? 5 : null;
+        const startMonth = filterByMonth ? 3 : null
+        const endMonth = filterByMonth ? 5 : null
 
         seasonIndex(startMonth, endMonth)
             .then(data => {
                 setSeasons(data.seasons || [])
             })
             .catch(error => {
-                console.error("Error fetching seasons:", error);
+                console.error("Error fetching seasons:", error)
             })
             .finally(() => {
                 setIsLoading(false);
             })
     }, [filterByMonth])
+
+    const toggleReadMore = (seasonId) => {
+        setExpandedSeasons((prev) => ({ ...prev, [seasonId]: !prev[seasonId] }))
+    }
 
     const seasonClassNames = {
         6: styles.springCard,
@@ -38,26 +43,37 @@ export default function Seasons() {
             <h1>Explore Locations by Season</h1>
 
             <Container>
-                {isLoading 
-                ? <p>Loading seasons...</p>
-                : <Row>
-                    {seasons.map((season) => (
-                        // <Col key={season.id} xs={12} sm={6} md={3}>
-                        <Card className={`${styles.seasonCard} ${seasonClassNames[season.id] || ""}`}>
-                            <Card.Body className={styles.cardBody}>
+                {isLoading
+                    ? <p>Loading seasons...</p>
+                    : <Row>
+                        {seasons.map((season) => (
+                            <Col key={season.id} xs={12} sm={6} md={4} lg={3}>
+
+                                <Card className={`${styles.seasonCard} ${seasonClassNames[season.id] || ""}`}>
+                                    <Card.Body className={styles.cardBody}>
+                                        <Card.Title className={styles.seasonTitle}>{season.name}</Card.Title>
+
+                                        <Card.Text className={`${styles.seasonDescription} ${expandedSeasons[season.id] ? styles.expandedDescription : ""}`}>
+                                            {season.description}
+                                        </Card.Text>
+
+                                        {season.description?.length > 120 && (
+                                            <button
+                                                className={styles.readMoreButton}
+                                                onClick={() => toggleReadMore(season.id)}>
+                                                {expandedSeasons[season.id] ? "Show Less" : "Read more..."}
+                                            </button>
+                                        )}
+                                    </Card.Body>
                                     <Link to={`/seasons/${season.id}/locations/`} className={styles.seasonLink}>
-                                <Card.Title className={styles.seasonTitle}>{season.name}</Card.Title>
-                                    <Card.Text className={styles.seasonDescription}>
-                                            {season.description || "No description available."}
-                                    </Card.Text>
                                         <p>View Locations</p>
                                     </Link>
-                            </Card.Body>
-                        </Card>
-                        // </Col>
-                    ))}
-                </Row>
-            }
+                                </Card>
+
+                            </Col>
+                        ))}
+                    </Row>
+                }
             </Container>
         </main>
     )

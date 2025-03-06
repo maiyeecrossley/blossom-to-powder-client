@@ -1,20 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Sriracha&display=swap');
 
-:root {
-    --text-primary: #434242;
-    --text-secondary: #555555;
-    --background-primary: #F8F6F0;
+/* :root {
+    --text-primary: #d5d5d5;
+    --text-secondary: #8d8d8d;
+    --background-primary: #e3cfe3;
     --background-secondary: #EAE0D5;
     --background-tertiary: #C1D3C8;
     --cherry-blossom: #f2cfe3;
     --autumn-leaf: #dca455; 
     --forest-green: #9fcb91; 
     --misty-blue: #8ba8b8;
+    --darker-blue: #788a94;
     --border: #A5A5A5;
     --brand: #D88A1A;
     --brand-hover: #B76E1B;
     --brand-disabled: #9E5C16;
     --error: #E74C3C;
+} */
+
+:root {
+
+  --text-primary: #3b3b3b;
+  --text-secondary: #6b6b6b;
+  --background-primary: #f4f1ee; 
+  --background-secondary: #ded6d1;
+  --background-tertiary: #c8d6cb;
+  --cherry-blossom: #f7d1e0;
+  --autumn-leaf: #e5b07e;
+  --forest-green: #a5c8a6; 
+  --misty-blue: #9cb5c3;
+  --darker-blue: #7c98a1; 
+  --border: #b5b5b5;
+  --brand: #e8a879; 
+  --brand-hover: #d2956b; 
+  --brand-disabled: #b8835d; 
+  --error: #f28b82; 
 }
 
 * {
@@ -26,24 +46,24 @@
   }
 
 body {
-    background-color: var(--background-primary);
+    background-color: var(--darker-blue);
 }
 
 
 main {
     margin: 0;
-    background-color:var(--background-tertiary);
+    background-color:var(--darker-blue);
     flex-grow: 1;
     max-width: 100%;
     margin: 0 auto;
 }
 
 nav {
-    background-color: var(--background-tertiary);
+    background-color: var(--darker-blue);
 }
 
 div {
-    background-color: var(--background-tertiary);
+    background-color: var(--darker-blue);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 html {
-    background-color: var(--background-tertiary);
+    background-color: var(--darker-blue);
 }
 
 .site-name{

@@ -1,18 +1,15 @@
 p {
-    font-family: "Sriracha", serif;
+    font-family: "Merriweather", serif;
 }
 
 .seasonCard {
-    max-width: 280px;
-    margin: 10px auto;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    cursor: pointer;
+    width: 100%;
+    min-height: 350px; /* ✅ Set a minimum height instead of fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out; /* ✅ Smooth expansion */
 }
-
 
 .seasonCard:hover {
     transform: scale(1.05);
@@ -28,14 +25,38 @@ p {
 .seasonTitle {
     background: transparent !important;
     padding: 5px !important;
-    font-family: "Sriracha", serif;
+    font-family: "Merriweather", serif;
     font-size: 30px;
 }
 
 
 .seasonDescription {
-    font-family: "Merriweather", serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    font-family: "Sriracha", serif;
     font-size: 14px;
+    word-wrap: break-word;
+}
+
+.readMoreButton {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.readMoreButton:hover {
+    color: var(--text-secondary);
+}
+.expandedDescription {
+    -webkit-line-clamp: unset; /* ✅ Show full text */
+    overflow: visible;
 }
 
 
