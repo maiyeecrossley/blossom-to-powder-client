@@ -6,10 +6,10 @@
     --background-primary: #F8F6F0;
     --background-secondary: #EAE0D5;
     --background-tertiary: #C1D3C8;
-    --cherry-blossom: #ffc7e8;
-    --autumn-leaf: #D88A1A; 
-    --forest-green: #9fae80; 
-    --misty-blue: #718B9A;
+    --cherry-blossom: #f2cfe3;
+    --autumn-leaf: #dca455; 
+    --forest-green: #9fcb91; 
+    --misty-blue: #8ba8b8;
     --border: #A5A5A5;
     --brand: #D88A1A;
     --brand-hover: #B76E1B;
@@ -73,24 +73,26 @@ html, body, #root {
   }
   
 .button {
-  font-family: "Merriweather", serif;
-  font-size: 18px;
-  color: var(--text-primary);
-  background-color: var(--brand);
-  border: none;
-  margin: 0.3rem;
-  padding: 0.3rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-radius: 5px;
+    font-family: "Merriweather", serif;
+    font-size: 12px;
+    color: white;
+    background-color: var(--forest-green);
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
 }
+
 .button:hover {
-  background-color: var(--brand-hover);
+    background-color: var(--misty-blue);
 }
+
 .button:disabled {
   background-color: var(--brand-disabled);
   cursor: not-allowed;
 }
+
 .tagline {
     font-family: "Merriweather", sans-serif;
     font-size: 22px;
