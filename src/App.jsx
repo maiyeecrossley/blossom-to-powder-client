@@ -1,5 +1,4 @@
 import './App.css'
-
 import { Routes, Route, NavLink } from "react-router"
 
 import Register from "./components/Register/Register"

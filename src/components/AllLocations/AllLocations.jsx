@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react"
-import { useParams } from "react-router"
+import { useParams, Link } from "react-router"
 import { UserContext } from "../../contexts/UserContext"
 import { locationIndex, addLocationToItinerary } from "../../services/locationService"
 import { itineraryIndex } from "../../services/itineraryService"
 
-import { Dropdown } from "react-bootstrap"
+import Multiselect from "multiselect-react-dropdown"
 
 import styles from "./AllLocations.module.css"
 
@@ -12,8 +12,9 @@ export default function AllLocations() {
 
     const [locations, setLocations] = useState([])
     const [itineraries, setItineraries] = useState([])
-    const [selectedItinerary, setSelectedItinerary] = useState("")
     const [isLoading, setIsLoading] = useState(true)
+    const [selectedItineraries, setSelectedItineraries] = useState({})
+    const [openDropdown, setOpenDropdown] = useState(null)
 
     const { locationId } = useParams()
     const { user } = useContext(UserContext)
@@ -28,67 +29,83 @@ export default function AllLocations() {
                     const itineraryData = await itineraryIndex()
                     setItineraries(itineraryData)
                 }
-                } catch (error) {
-                    console.log(error)
-                } finally {
-                    setIsLoading
-                }
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setIsLoading
             }
-            fetchData()
-        }, [user])
+        }
+        fetchData()
+    }, [user])
 
-        useEffect(() => {
+    useEffect(() => {
         locationIndex(locationId)
             .then(data => setLocations(data))
             .catch(error => console.log("Error fetching locations", error))
             .finally(() => setIsLoading(false))
     }, [])
 
-    const handleAddLocation = async (itineraryId, locationId) => {
-        if (!itineraryId) return
+    const handleSelectChange = (selectedList, locationId) => {
+        setSelectedItineraries(prev => ({
+            ...prev,
+            [locationId]: selectedList.map(itinerary => itinerary.id),
+        }));
+    };
+    
+    const handleConfirmSelection = async (locationId) => {
+        const selectedIds = selectedItineraries[locationId] || [];
+        if (!selectedIds.length) return;
     
         try {
-            await addLocationToItinerary(itineraryId, locationId, null)
-            alert("Location added successfully!")
+            await Promise.all(selectedIds.map(id => addLocationToItinerary(id, locationId, null)));
+            alert("Location added successfully!");
         } catch (error) {
-            console.error("Error adding location to itinerary:", error)
+            console.error("Error adding location:", error);
         }
-    }
+    };
 
     return (
         <main>
             <section>
-                <h1>Available Locations</h1>
+                <h1>All Locations</h1>
                 {isLoading 
                 ? <p>Loading locations...</p>
                 : locations.length > 0 
-                ? <ul>
-                    {locations.map((location) => (
-                        <li key={location.id}>
-                            {location.name}
-                            
-                            <Dropdown onSelect={(itineraryId) => handleAddLocation(itineraryId, location.id)} className={styles.dropdownContainer}>
-                            <Dropdown.Toggle className={styles.dropdownToggle} variant="primary" id={`dropdown-${location.id}`}>
-                                Add to Itinerary
-                            </Dropdown.Toggle>
+                ? <ul> {locations.map((location) => (
+                    <li key={location.id}>{location.name}
 
-                            <Dropdown.Menu className={styles.dropdownMenu}>
-                                {itineraries.length > 0 
-                                ?   itineraries.map((itinerary) => (
-                                    <Dropdown.Item key={itinerary.id} eventKey={itinerary.id} className={styles.dropdownItem}>
-                                        {itinerary.trip_name}
-                                    </Dropdown.Item>
-                             ))
-                                :   <Dropdown.Item disabled>No itineraries found
-                                    </Dropdown.Item>
-                                }
-                            </Dropdown.Menu>
-                            </Dropdown>
-                        </li>
-                    ))}
+                        <div className={styles.dropdownContainer}>
+                        <Multiselect
+                            options={itineraries}
+                            selectedValues={itineraries.filter((itinerary) =>
+                                selectedItineraries[location.id]?.includes(itinerary.id)
+                            )}
+                            onSelect={(selectedList) => handleSelectChange(selectedList, location.id)}
+                            onRemove={(selectedList) => handleSelectChange(selectedList, location.id)}
+                            displayValue="trip_name"
+                            showCheckbox
+                            className={styles.multiSelect}
+                            style={{
+                                multiselectContainer: { width: "260px" },
+                                chips: {background: "var(--autumn-leaf"},
+                                searchBox: { background: "var(--background-secondary)", border: "2px solid var(--border)", borderRadius: "8px" },
+                                optionContainer: { background: "var(--background-primary)", borderRadius: "8px", padding: "5px" },
+                                option: { background: "var(--background-tertiary)", color: "var(--text-primary)", padding: "8px" },
+                                highlightOption: { background: "var(--cherry-blossom)", color: "var(--text-primary)" },
+                                inputField: { color: "var(--text-secondary)" },
+                                
+                            }}
+                        />
+                            
+                            <button className={styles.button} onClick={() => handleConfirmSelection(location.id)}>
+                                Save
+                            </button>
+                        </div>
+                    </li>
+                ))}
                 </ul>
                 : <p>No locations available.</p>
-            }
+                }
             </section>
         </main>
     )
