@@ -46,24 +46,24 @@
   }
 
 body {
-    background-color: var(--darker-blue);
+    background-color: var(--background-secondary);
 }
 
 
 main {
     margin: 0;
-    background-color:var(--darker-blue);
+    background-color:var(--background-secondary);
     flex-grow: 1;
     max-width: 100%;
     margin: 0 auto;
 }
 
 nav {
-    background-color: var(--darker-blue);
+    background-color: var(--background-secondary);
 }
 
 div {
-    background-color: var(--darker-blue);
+    background-color: var(--background-secondary);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 html {
-    background-color: var(--darker-blue);
+    background-color: var(--background-secondary);
 }
 
 .site-name{

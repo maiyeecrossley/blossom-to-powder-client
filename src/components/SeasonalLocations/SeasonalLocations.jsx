@@ -20,7 +20,7 @@ export default function SeasonalLocations() {
             })
             .catch(error => console.log("Error fetching locations", error))
             .finally(() => {
-                console.log("finished fetching locations")
+                
                 setIsLoading(false)
     })
     }, [seasonId])
