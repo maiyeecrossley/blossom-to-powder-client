@@ -7,7 +7,10 @@ export default function SeasonalLocationItem({
     itineraries,
     selectedItineraries,
     handleSelectChange,
-    handleConfirmSelection
+    handleConfirmSelection,
+    user,
+    triggerLoginModal,
+    triggerRegisterModal
 }) 
 
 {
@@ -35,6 +38,9 @@ const imageUrl = location.location_image || "https://i.pinimg.com/736x/85/15/4e/
                     selectedItineraries={selectedItineraries}
                     locationId={location.id}
                     handleSelectChange={handleSelectChange}
+                    user={user}
+                    triggerLoginModal={triggerLoginModal}
+                    triggerRegisterModal={triggerRegisterModal}
                 />
 
                 <Button 

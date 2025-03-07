@@ -3,6 +3,9 @@ import { useParams, Link } from "react-router"
 import { seasonLocationIndex } from "../../services/locationService"
 import { itineraryIndex } from "../../services/itineraryService"
 import SeasonalLocationItem from "../SeasonalLocationItem/SeasonalLocationItem"
+import ModalComponent from "../ModalComponent/ModalComponent"
+import Login from "../Login/Login"
+import Register from "../Register/Register"
 
 import styles from "../LocationItem/LocationItem.module.css" 
 
@@ -12,6 +15,8 @@ export default function SeasonalLocations() {
     const [isLoading, setIsLoading] = useState(true)
     const [itineraries, setItineraries] = useState([])
     const [selectedItineraries, setSelectedItineraries] = useState({})
+    const [showLogin, setShowLogin] = useState(false)
+    const [showRegister, setShowRegister] = useState(false)
 
     const { seasonId } = useParams()
 
@@ -66,6 +71,8 @@ export default function SeasonalLocations() {
                                         selectedItineraries={selectedItineraries}
                                         handleSelectChange={handleSelectChange}
                                         handleConfirmSelection={handleConfirmSelection}
+                                        triggerLoginModal={() => setShowLogin(true)}
+                                        triggerRegisterModal={() => setShowRegister(true)}
                                     />
                                 ))}
                             </div>
@@ -74,6 +81,16 @@ export default function SeasonalLocations() {
                     </>
                     : <p>Season not found.</p>
             }
+
+
+                <ModalComponent show={showLogin} handleClose={() => setShowLogin(false)} title="Login">
+                    <Login handleClose={() => setShowLogin(false)} />
+                </ModalComponent>
+
+
+                <ModalComponent show={showRegister} handleClose={() => setShowRegister(false)} title="Sign Up">
+                    <Register handleClose={() => setShowRegister(false)} />
+                </ModalComponent>
         </main>
     )
 }

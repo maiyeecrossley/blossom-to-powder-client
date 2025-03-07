@@ -39,7 +39,8 @@ function App() {
         <Route path="/auth/login/" element={<Login />} />
         <Route path="/locations/" element={<AllLocations triggerLoginModal={() => setShowLogin(true)}
                             triggerRegisterModal={() => setShowRegister(true)} />} />
-        <Route path="/seasons/:seasonId/locations/" element={<SeasonalLocations />} />
+        <Route path="/seasons/:seasonId/locations/" element={<SeasonalLocations triggerLoginModal={() => setShowLogin(true)}
+                            triggerRegisterModal={() => setShowRegister(true)} />} />
         <Route path="/seasons/" element={<Seasons />} />
         <Route path="/itineraries/" element={<AllItineraries />} />
         <Route path="/itineraries/create/" element={<CreateItinerary />} />
