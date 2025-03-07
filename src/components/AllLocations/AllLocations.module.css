@@ -1,0 +1,74 @@
+h1 {
+    font-family: "Merriweather", serif;
+    font-size: 30px;
+    color: var(--text-primary);
+    margin-top: 120px;
+    margin-left: 40px;
+}
+
+
+.title {
+    text-align: center;
+    font-family: "Merriweather", serif;
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+
+.locationsContainer {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
+    padding: 20px; 
+}
+
+.locationCard {
+    width: 100%;
+    max-width: 350px;
+    margin: 15px auto; 
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--misty-blue);
+    font-size: 14px;
+    font-family: "Merriweather", serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease-in-out;
+}
+
+.locationCard:hover {
+    transform: scale(1.03);
+    box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.locationImage {
+    width: 100%;
+    height: 180px; /* ✅ Fixed height */
+    object-fit: cover; /* ✅ Prevent stretching */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    background-color: var(--forest-green);
+    color: var(--text-primary);
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: var(--cherry-blossom);
+    color: var(--background-primary);
+}

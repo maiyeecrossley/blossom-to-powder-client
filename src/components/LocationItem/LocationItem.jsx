@@ -15,9 +15,20 @@ export default function LocationItem({
     const noItineraries = itineraries.length === 0
     const isLoggedIn = !!user
 
+    const imageUrl = location.location_image || "https://i.pinimg.com/736x/85/15/4e/85154e6d638b066d9b8a178c410d90c0.jpg"
+
     return (
 
         <Card className={styles.locationCard}>
+            
+            <Card.Img 
+                variant="top" 
+                src={imageUrl} 
+                alt={location.name} 
+                className={styles.locationImage} 
+            />
+            
+
             <Card.Body>
                 <Card.Title>{location.name}</Card.Title>
                 <Card.Text>{location.description}</Card.Text>

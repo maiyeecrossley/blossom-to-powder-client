@@ -12,6 +12,7 @@ import SingleItinerary from './components/SingleItinerary/SingleItinerary'
 import CreateItinerary from './components/CreateItinerary/CreateItinerary'
 import UpdateItinerary from './components/UpdateItinerary/UpdateItinerary'
 import NavMenu from './components/NavMenu/NavMenu'
+import Home from './components/Home/Home';
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
       <NavLink to = "/itineraries/">My Trips </NavLink>
     <main>
     <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/auth/register/" element={<Register />} />
         <Route path="/auth/login/" element={<Login />} />
         <Route path="/locations/" element={<AllLocations />} />

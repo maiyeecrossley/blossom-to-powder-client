@@ -13,7 +13,7 @@ import styles from "./NavMenu.module.css"
 export default function NavMenu() {
     const [showLogin, setShowLogin] = useState(false)
     const [showRegister, setShowRegister] = useState(false)
-
+    
     const navigate = useNavigate()
     const { user, setUser } = useContext(UserContext)
     const signOut = () => {
@@ -25,23 +25,25 @@ export default function NavMenu() {
 
     return (
         <Navbar expand="lg" className="navbar-custom fixed-top">
-            <Container>
-                <Navbar.Brand href="/">Blossom to Powder</Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link href="/itineraries" className={styles.button}>Itineraries</Nav.Link>
-                        <Nav.Link href="/seasons" className={styles.button}>Seasons</Nav.Link>
+            
+                <Navbar.Brand href="/" className={styles.brandContainer}>
+                <span className={styles.title}>Blossom to Powder</span>
+                <span className={styles.tagline}>Wandering Japan's Four Seasons</span>
+                </Navbar.Brand>
+                    <div className={styles.navButtons}>
+                        <Nav.Link href="/itineraries" className={styles.button}>My Trips</Nav.Link>
                         <Nav.Link href="/locations" className={styles.button}>Locations</Nav.Link>
-                    </Nav>
+                    </div>
                     <Nav>
                         {user 
                         ? <Button onClick={signOut} className={styles.button}>Logout</Button>
                         : <>
                             <Button onClick={() => setShowLogin(true)} className={styles.button}>Login</Button>
-                            <Button onClick={() => setShowSignup(true)} className={styles.button}>Sign Up</Button>
+                            <Button onClick={() => setShowRegister(true)} className={styles.button}>Sign Up</Button>
                         </>
                         }
                     </Nav>
-            </Container>
+            
 
             <ModalComponent show={showLogin} handleClose={() => setShowLogin(false)} title="Login">
                 <Login handleClose={() => setShowLogin(false)} />

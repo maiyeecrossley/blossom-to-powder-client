@@ -31,7 +31,7 @@ export default function AllLocations() {
             } catch (error) {
                 console.log(error)
             } finally {
-                setIsLoading
+                setIsLoading(false)
             }
         }
         fetchData()

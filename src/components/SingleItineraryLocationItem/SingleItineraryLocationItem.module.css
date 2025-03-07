@@ -1,0 +1,116 @@
+.locationsContainer {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-top: 20px;
+    max-width: 100%; 
+}
+
+.locationCard {
+    width: 300px; 
+    max-width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--misty-blue);
+    text-align: center;
+    font-family: "Merriweather", serif;
+    flex-grow: 1;
+}
+
+.locationImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.locationTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.locationDescription {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.visitDate {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-top: 8px;
+}
+
+.datePickerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.dateInput {
+    background-color: var(--background-primary);
+    border: 2px solid var(--border);
+    color: var(--text-primary);
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+}
+
+
+.button .saveButton .cancelButton .removeButton {
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+    color: white;
+    background-color: var(--misty-blue);
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button:hover, .saveButton:hover, .cancelButton:hover, .removeButton:hover {
+    transform: scale(1.03);
+}
+
+
+.saveButton {
+    background-color: var(--forest-green);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    font-family: "Merriweather", serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancelButton {
+    background-color: var(--cherry-blossom);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    font-family: "Merriweather", serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.removeButton {
+    background-color: var(--autumn-leaf);
+    color: white;
+}
+
+.button {
+    background-color: var(--misty-blue);
+    color: white;
+}

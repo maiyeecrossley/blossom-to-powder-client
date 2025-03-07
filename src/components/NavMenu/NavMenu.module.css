@@ -1,7 +1,14 @@
+
+
+.navButtons {
+    display: flex;
+    gap: 10px; 
+    margin-left: auto;
+}
+
 .button {
-    display: inline-block;
     background-color: var(--misty-blue);
-    color: var(--text-primary);
+    color: white;
     border: none;
     padding: 8px 16px; 
     font-size: 14px; 
@@ -17,7 +24,7 @@
 
 .button:hover {
     background-color: var(--cherry-blossom); 
-    color: var(--background-primary);
+    color: var(--text-secondary);
     transform: scale(1.03);
     text-decoration: none;
 }
@@ -38,20 +45,35 @@ a.button {
     text-align: center;
 }
 
-.navbar-custom {
-    background-color: var(--forest-green);
-    padding: 10px 20px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+main {
+    padding-top: 20px; 
 }
 
+.brandContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+}
 
-main {
-    padding-top: 80px; 
+.title {
+    font-family: "Sriracha", serif;
+    font-size: 60px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); 
+    margin-left: 40px;
+}
+
+.tagline {
+    font-family: "Sriracha", serif;
+    font-size: 30px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); 
+    margin-left: 30px;
 }
 
 .navbar-custom .btn {
     margin-left: 10px;
 }
+

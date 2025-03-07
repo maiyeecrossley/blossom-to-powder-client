@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router"
+import { useParams, Link } from "react-router"
 import { seasonLocationIndex } from "../../services/locationService"
 import { itineraryIndex } from "../../services/itineraryService"
 import SeasonalLocationItem from "../SeasonalLocationItem/SeasonalLocationItem"
@@ -43,13 +43,18 @@ export default function SeasonalLocations() {
     }
 
     return (
-        <main>
+        <main className={styles.seasonMain}>
             {isLoading 
                 ? <p>Loading locations...</p>
                 : season 
                     ? <>
                         <h2 className={styles.seasonTitle}>{season.name}</h2>
                         <p className={styles.seasonDescription}>{season.description}</p>
+                        <div className={styles.seasonalLocation}>
+
+                        <Link to={`/`} className={styles.button}>Back to other seasons</Link>
+                        <Link to={`/locations/`} className={styles.button}>View other locations</Link>
+                        </div>
 
                         {locations.length > 0 
                             ? <div className={styles.locationsContainer}>

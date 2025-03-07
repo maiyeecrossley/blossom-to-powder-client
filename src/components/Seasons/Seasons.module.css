@@ -2,13 +2,21 @@ p {
     font-family: "Merriweather", serif;
 }
 
+.seasonsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .seasonCard {
     width: 100%;
-    min-height: 350px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.3s ease-in-out; 
+    margin-bottom: 100px;
 }
 
 .seasonCard:hover {
@@ -16,17 +24,26 @@ p {
     box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
+.seasonImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
 
 .cardBody {
+    flex-grow: 1;
     background: transparent !important;
-    padding: 5px !important;
+    padding: 10px !important;
 }
 
 .seasonTitle {
     background: transparent !important;
     padding: 5px !important;
     font-family: "Merriweather", serif;
-    font-size: 30px;
+    font-size: 22px;
+    text-align: center;
 }
 
 
@@ -34,7 +51,7 @@ p {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     font-family: "Sriracha", serif;
     font-size: 14px;
@@ -55,7 +72,7 @@ p {
     color: var(--text-secondary);
 }
 .expandedDescription {
-    -webkit-line-clamp: unset; /* ✅ Show full text */
+    -webkit-line-clamp: unset;
     overflow: visible;
 }
 
@@ -74,28 +91,4 @@ p {
 .seasonLink:hover {
     color: var(--text-secondary);
     text-decoration: underline;
-}
-
-
-.springCard {
-    background: var(--cherry-blossom);
-    border: 2px solid var(--cherry-blossom);
-}
-
-
-.summerCard {
-    background: var(--forest-green);
-    border: 2px solid var(--forest-green);
-}
-
-
-.autumnCard {
-    background: var(--autumn-leaf);
-    border: 2px solid var(--autumn-leaf);
-}
-
-
-.winterCard {
-    background: var(--darker-blue);
-    border: 2px solid var(--darker-blue);
 }

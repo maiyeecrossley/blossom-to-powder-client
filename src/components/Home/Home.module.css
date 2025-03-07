@@ -1,0 +1,13 @@
+.heroSection {
+    text-align: center;
+    color: var(--text-primary);
+    margin-top: 60px;
+    padding-bottom: 10px;
+}
+
+.seasonsSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: transparent !important;
+}
