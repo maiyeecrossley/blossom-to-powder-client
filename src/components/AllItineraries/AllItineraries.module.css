@@ -1,9 +1,12 @@
+h1 {
+    margin-top: 200px;
+}
+
 .button {
-    display: inline-block;
     background-color: var(--misty-blue);
-    color: var(--text-primary);
+    color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 16px; 
     font-size: 14px; 
     font-weight: bold;
     font-family: "Merriweather", serif;
@@ -13,6 +16,8 @@
     text-align: center;
     text-decoration: none;
     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+
 }
 
 .button:hover {

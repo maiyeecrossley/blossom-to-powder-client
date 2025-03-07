@@ -5,7 +5,7 @@ import { itineraryUpdate, itineraryShow } from "../../services/itineraryService"
 
 import styles from "./UpdateItinerary.module.css"
 
-export default function UpdateItinerary({ itineraryId, handleClose}) {
+export default function UpdateItinerary({ itineraryId, handleClose, refreshItinerary}) {
 
     
     const { user } = useContext(UserContext)
@@ -39,21 +39,22 @@ export default function UpdateItinerary({ itineraryId, handleClose}) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
         if (new Date(itineraryData.trip_start_date) > new Date(itineraryData.trip_end_date)) {
             setErrors({ date: "End date must be after the start date." })
-            return;
+            return
         }
-
+    
         try {
             await itineraryUpdate(itineraryId, itineraryData);
-            
-            if(handleClose)
-            handleClose()
-
-            navigate(`/itineraries/${itineraryId}`)
+            if (handleClose) handleClose();
+            if (typeof refreshItinerary === "function") {
+                refreshItinerary();
+            }
+    
+            navigate(`/itineraries/${itineraryId}`);
         } catch (error) {
-            setErrors({ message: "Failed to update itinerary, please try again." })
+            setErrors({ message: "Failed to update itinerary, please try again." });
         }
     }
 

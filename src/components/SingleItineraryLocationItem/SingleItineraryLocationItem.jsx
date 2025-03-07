@@ -6,7 +6,6 @@ export default function SingleItineraryLocationItem({ locationData, handleDateSa
     const [selectedDate, setSelectedDate] = useState("")
 
     const { location } = locationData
-
     
     const imageUrl = location?.location_image || "https://i.pinimg.com/736x/85/15/4e/85154e6d638b066d9b8a178c410d90c0.jpg"
 
@@ -29,16 +28,18 @@ export default function SingleItineraryLocationItem({ locationData, handleDateSa
                 ? <div className={styles.datePickerContainer}>
                         <input
                             type="date"
-                            className={styles.dateInput}
                             value={selectedDate}
-                            onChange={(event) => setSelectedDate(event.target.value)}
+                            onChange={(event) => {
+                                setSelectedDate(event.target.value)
+                            }}
                         />
                         <Button
-                            variant="success"
-                            onClick={() => handleDateSave(location.id, locationData.location_visit_date || null)}
                             className={styles.saveButton}
+                            onClick={() => {
+                                handleDateSave(editLocationId, selectedDate, locationData.location_visit_date);
+                            }}
                         >
-                            Save
+                            Save Date
                         </Button>
                         <Button
                             variant="secondary"

@@ -3,7 +3,8 @@
 :root {
 
   --text-primary: #3b3b3b;
-  --text-secondary: #858585;
+  --text-secondary: #6f6f6f;
+  --text-tertiary: #858585;
   --background-primary: #ede5e7; 
   --background-secondary: #ded6d1;
   --background-tertiary: #c8d6cb;
@@ -36,7 +37,6 @@ main {
     background-color:var(--background-primary);
     flex-grow: 1;
     max-width: 100%;
-    margin: 0 auto;
 }
 
 
@@ -74,15 +74,6 @@ html {
     color: white;
 }
 
-html, body, #root {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
 .tagline {
     font-family: "Merriweather", sans-serif;
     font-size: 22px;

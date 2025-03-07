@@ -34,26 +34,27 @@ export default function SingleItinerary() {
     }, [itineraryId])
 
     
-    const handleDateSave = async (editLocationId, existingDate) => {
-        if (!selectedDate) return
-
+    const handleDateSave = async (editLocationId, newSelectedDate, existingDate) => {
+    
+        if (!newSelectedDate) {
+            return;
+        }
+    
         try {
-            let updatedItinerary = existingDate
-                ? await updateLocationVisitDate(itineraryId, editLocationId, selectedDate)
-                : await addLocationVisitDate(itineraryId, editLocationId, selectedDate)
-
-            setItinerary(prevItinerary => ({
-                ...prevItinerary,
-                locations: prevItinerary.locations.map(location =>
-                    location.location?.id === editLocationId
-                        ? { ...location, location_visit_date: selectedDate }
-                        : location
-                )
-            }))
-            setEditLocationId(null)
-            setSelectedDate("")
+            let updatedItinerary;
+            if (existingDate) {
+                
+                updatedItinerary = await updateLocationVisitDate(itineraryId, editLocationId, newSelectedDate);
+            } else {
+                updatedItinerary = await addLocationVisitDate(itineraryId, editLocationId, newSelectedDate);
+            }
+            const refreshedItinerary = await itineraryShow(itineraryId);
+            setItinerary(refreshedItinerary);
+    
+            setEditLocationId(null);
+            setSelectedDate("");
         } catch (error) {
-            console.error("Error updating date", error)
+            console.error(error)
         }
     }
 
@@ -68,7 +69,6 @@ export default function SingleItinerary() {
             console.log("Failed to delete itinerary", error)
         }
     }
-
     
     const handleRemoveLocation = async (locationId) => {
         if (!window.confirm("Are you sure you want to remove this location?")) return
@@ -87,6 +87,18 @@ export default function SingleItinerary() {
             alert("Location removed successfully!")
         } catch (error) {
             console.error("Error removing location from itinerary:", error)
+        }
+    }
+
+    const refreshItinerary = async () => {
+        setIsLoading(true);
+        try {
+            const updatedData = await itineraryShow(itineraryId)
+            setItinerary(updatedData)
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -145,7 +157,7 @@ export default function SingleItinerary() {
 
             
             <ModalComponent show={showEditModal} handleClose={() => setShowEditModal(false)} title="Edit Itinerary">
-                <UpdateItinerary itineraryId={itineraryId} handleClose={() => setShowEditModal(false)} />
+                <UpdateItinerary itineraryId={itineraryId} handleClose={() => setShowEditModal(false)} refreshItinerary={refreshItinerary} />
             </ModalComponent>
         </main>
     )

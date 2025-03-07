@@ -32,10 +32,8 @@ export default function AllItineraries() {
 
 
     return (
-        <main>
             <section>
                 <h1>Your upcoming trips:</h1>
-
 
                 <button onClick={() => setShowCreateModal(true)} className={styles.button}>
                     + Add New Trip
@@ -64,10 +62,10 @@ export default function AllItineraries() {
                                 <div className={styles.itineraryCard}>
                                     <h3 className={styles.itineraryTitle}>{itinerary.trip_name}</h3>
                                     <p className={styles.itineraryDate}>
-                                        <strong>Start date:</strong> {new Date(itinerary.trip_start_date).toDateString()}
+                                        <strong>Trip Start date:</strong> {new Date(itinerary.trip_start_date).toDateString()}
                                     </p>
                                     <p className={styles.itineraryDate}>
-                                        <strong>End date:</strong> {new Date(itinerary.trip_end_date).toDateString()}
+                                        <strong> Trip End date:</strong> {new Date(itinerary.trip_end_date).toDateString()}
                                     </p>
                                 </div>
                             </Link>
@@ -76,7 +74,7 @@ export default function AllItineraries() {
                 : <p className={styles.noItineraries}>No itineraries found</p>
                 }
             </section>
-        </main>
+        
     )
 
 }
