@@ -1,0 +1,21 @@
+.customModal .modal-content {
+    border-radius: 12px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.15);
+    background: var(--background-primary);
+}
+
+.modalTitle {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.closeButton {
+    background-color: var(--brand);
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.closeButton:hover {
+    background-color: var(--brand-hover);
+}

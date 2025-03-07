@@ -1,4 +1,3 @@
-import Multiselect from "multiselect-react-dropdown"
 import { Card, Button } from "react-bootstrap"
 import { Link } from "react-router"
 import styles from "./LocationItem.module.css"

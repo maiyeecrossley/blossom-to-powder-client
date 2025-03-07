@@ -7,7 +7,7 @@ import { useNavigate } from "react-router"
 
 import styles from "../Login/Login.module.css"
 
-export default function Login() {
+export default function Login({ handleClose }) {
 
 const { setUser } = useContext(UserContext)
 
@@ -29,6 +29,9 @@ const handleSubmit = async (event) => {
         setToken(data.token)
 
         setUser(getUserFromToken())
+        
+        if(handleClose)
+            handleClose()
 
         navigate("/")
 
@@ -69,7 +72,7 @@ const handleChange = (event) => {
                     />
                 </div>
 
-                <button type="submit" className={styles.button}>Login</button>
+                <button type="submit" className={styles.button} onClick={handleClose}>Login</button>
             </form>
         </section>
     )

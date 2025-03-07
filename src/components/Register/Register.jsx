@@ -7,7 +7,7 @@ import { UserContext } from "../../contexts/UserContext"
 
 import styles from "../Register/Register.module.css"
 
-export default function Register() {
+export default function Register({ handleClose }) {
 
     const { setUser } = useContext(UserContext)
 
@@ -27,6 +27,9 @@ export default function Register() {
             setToken(data.token)
 
             setUser(getUserFromToken())
+
+            if (handleClose)
+                handleClose()
 
             navigate("/")
         } catch (error) {
@@ -84,7 +87,7 @@ export default function Register() {
                     { errors.password && <p className='error-message'>{errors.password}</p> }
                     </div>
 
-                    <button type="submit" disabled={formData.password === ""} className={styles.button}>
+                    <button type="submit" disabled={formData.password === ""} className={styles.button} onClick={handleClose}>
                         Submit
                     </button>                
             </form>

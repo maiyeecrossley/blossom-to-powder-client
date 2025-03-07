@@ -11,23 +11,21 @@ import AllItineraries from './components/AllItineraries/AllItineraries'
 import SingleItinerary from './components/SingleItinerary/SingleItinerary'
 import CreateItinerary from './components/CreateItinerary/CreateItinerary'
 import UpdateItinerary from './components/UpdateItinerary/UpdateItinerary'
+import Navbar from './components/NavBar/NavBar'
 
 function App() {
   
 
   return (
     <>
-    <nav>
-      <NavLink to = "/">Home</NavLink>
-      <NavLink to = "/auth/register/">Register </NavLink>
-      <NavLink to = "/auth/login/">Login </NavLink>
+    <div>
+    <Navbar />
+    <NavLink to = "/">Home</NavLink>
       <NavLink to = "/seasons/">Explore Seasons </NavLink>
       <NavLink to = "/locations/">All Locations </NavLink>
       <NavLink to = "/itineraries/">My Trips </NavLink>
-
-    </nav>
     <main>
-      <Routes>
+    <Routes>
         <Route path="/auth/register/" element={<Register />} />
         <Route path="/auth/login/" element={<Login />} />
         <Route path="/locations/" element={<AllLocations />} />
@@ -40,6 +38,10 @@ function App() {
       
       </Routes>
     </main>
+    </div>
+      
+
+
     </>
   )
 }

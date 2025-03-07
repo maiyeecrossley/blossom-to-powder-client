@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/UserContext"
 
 import styles from "./CreateItinerary.module.css"
 
-export default function CreateItinerary() {
+export default function CreateItinerary({ handleClose, triggerLoginModal }) {
 
     const { user } = useContext(UserContext)
 
@@ -20,10 +20,10 @@ export default function CreateItinerary() {
 
     useEffect(() => {
         if (!user) {
-            navigate("/auth/login")
+            triggerLoginModal()
             return
         }
-    }, [user, navigate])
+    }, [user, triggerLoginModal])
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -38,6 +38,10 @@ export default function CreateItinerary() {
             
             setItineraryData(newItinerary)
             setErrors({})
+
+            if (handleClose)
+                handleClose()
+
             navigate("/itineraries/", { state: { refresh: true } })
         } catch (error) {
             
@@ -92,7 +96,7 @@ export default function CreateItinerary() {
                     />
                 </div>
 
-                <button type="submit" disabled={itineraryData.trip_name === ""} className={styles.button}>
+                <button type="submit" disabled={itineraryData.trip_name === ""} className={styles.button} onClick={handleClose}>
                     Create Itinerary
                 </button>
             </form>
