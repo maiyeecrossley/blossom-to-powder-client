@@ -1,4 +1,5 @@
 import './App.css'
+import { useState } from "react"
 import { Routes, Route, NavLink } from "react-router"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,14 +14,20 @@ import CreateItinerary from './components/CreateItinerary/CreateItinerary'
 import UpdateItinerary from './components/UpdateItinerary/UpdateItinerary'
 import NavMenu from './components/NavMenu/NavMenu'
 import Home from './components/Home/Home';
+import ModalComponent from './components/ModalComponent/ModalComponent';
 
 function App() {
-  
+
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   return (
     <>
     <div>
-    <NavMenu />
+    <NavMenu 
+      triggerLoginModal={() => setShowLogin(true)}
+      triggerRegisterModal={() => setShowRegister(true)}/>
+
     <NavLink to = "/">Home</NavLink>
       <NavLink to = "/seasons/">Explore Seasons </NavLink>
       <NavLink to = "/locations/">All Locations </NavLink>
@@ -30,7 +37,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/auth/register/" element={<Register />} />
         <Route path="/auth/login/" element={<Login />} />
-        <Route path="/locations/" element={<AllLocations />} />
+        <Route path="/locations/" element={<AllLocations triggerLoginModal={() => setShowLogin(true)}
+                            triggerRegisterModal={() => setShowRegister(true)} />} />
         <Route path="/seasons/:seasonId/locations/" element={<SeasonalLocations />} />
         <Route path="/seasons/" element={<Seasons />} />
         <Route path="/itineraries/" element={<AllItineraries />} />
@@ -39,8 +47,17 @@ function App() {
         <Route path="/itineraries/:itineraryId/edit/" element={<UpdateItinerary />} />
       
       </Routes>
+
     </main>
     </div>
+
+            <ModalComponent show={showLogin} handleClose={() => setShowLogin(false)} title="Login">
+                <Login handleClose={() => setShowLogin(false)} />
+            </ModalComponent>
+
+            <ModalComponent show={showRegister} handleClose={() => setShowRegister(false)} title="Sign Up">
+                <Register handleClose={() => setShowRegister(false)} />
+            </ModalComponent>
       
     </>
   )

@@ -8,7 +8,7 @@ import { Container, Row } from "react-bootstrap"
 import styles from "./AllLocations.module.css"
 import LocationItem from "../LocationItem/LocationItem"
 
-export default function AllLocations() {
+export default function AllLocations({ triggerLoginModal, triggerRegisterModal }) {
 
     const [locations, setLocations] = useState([])
     const [itineraries, setItineraries] = useState([])
@@ -66,6 +66,7 @@ export default function AllLocations() {
         <main>
             <section>
                 <h1>All Locations</h1>
+                
                 {isLoading 
                 ? <p>Loading locations...</p>
                 : locations.length > 0 
@@ -79,7 +80,9 @@ export default function AllLocations() {
                                     selectedItineraries={selectedItineraries}
                                     handleSelectChange={handleSelectChange}
                                     handleConfirmSelection={handleConfirmSelection}
-                                    user={user} />
+                                    user={user}
+                                    triggerLoginModal={triggerLoginModal}
+                                    triggerRegisterModal={triggerRegisterModal} />
                 ))}
                 </Row>
                 </Container>

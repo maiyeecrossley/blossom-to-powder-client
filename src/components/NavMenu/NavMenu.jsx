@@ -43,7 +43,7 @@ export default function NavMenu() {
                         </>
                         }
                     </Nav>
-            
+
 
             <ModalComponent show={showLogin} handleClose={() => setShowLogin(false)} title="Login">
                 <Login handleClose={() => setShowLogin(false)} />

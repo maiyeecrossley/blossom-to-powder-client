@@ -9,7 +9,9 @@ export default function LocationItem({
     selectedItineraries,
     handleSelectChange,
     handleConfirmSelection,
-    user
+    user,
+    triggerLoginModal,
+    triggerRegisterModal
 
 }) {
     const noItineraries = itineraries.length === 0
@@ -38,21 +40,10 @@ export default function LocationItem({
                         itineraries={itineraries}
                         selectedItineraries={selectedItineraries}
                         locationId={location.id}
-                        handleSelectChange={handleSelectChange}/>
-
-                    {noItineraries && location.id === 1 && (
-                        <div className={styles.noItineraries}>
-                            {isLoggedIn
-
-                                ? <div>
-                                    No itineraries found. <Link to="/itineraries/create">Create one here!</Link>
-                                </div>
-                                : <div>
-                                    No itineraries found. <Link to="/auth/login">Login</Link> or <Link to="/auth/register">Sign up</Link> to create one!
-                                </div>
-                            }
-                        </div>
-                    )}
+                        handleSelectChange={handleSelectChange}
+                        user={user}
+                        triggerLoginModal={triggerLoginModal}
+                        triggerRegisterModal={triggerRegisterModal}/>
 
                     {!noItineraries && (
                         <button className={styles.button} onClick={() => handleConfirmSelection(location.id)}>

@@ -35,3 +35,45 @@
 .multiSelect input[type="checkbox"]:checked::before {
     display: block;
 }
+
+.dropdownWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.dropdownContainer {
+    position: relative;
+    width: 100%;
+    max-width: 260px; 
+    padding: 5px;
+    background: var(--background-primary);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+}
+
+.emptyDropdown {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background: var(--background-secondary);
+    border-radius: 8px;
+}
+
+.noItinerariesText {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.link {
+    color: var(--text-primary);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
