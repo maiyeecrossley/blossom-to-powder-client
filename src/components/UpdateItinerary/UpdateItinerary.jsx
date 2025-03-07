@@ -5,9 +5,9 @@ import { itineraryUpdate, itineraryShow } from "../../services/itineraryService"
 
 import styles from "./UpdateItinerary.module.css"
 
-export default function UpdateItinerary() {
+export default function UpdateItinerary({ itineraryId, handleClose}) {
 
-    const { itineraryId } = useParams()
+    
     const { user } = useContext(UserContext)
 
     const [itineraryData, setItineraryData] = useState({
@@ -47,6 +47,10 @@ export default function UpdateItinerary() {
 
         try {
             await itineraryUpdate(itineraryId, itineraryData);
+            
+            if(handleClose)
+            handleClose()
+
             navigate(`/itineraries/${itineraryId}`)
         } catch (error) {
             setErrors({ message: "Failed to update itinerary, please try again." })
@@ -58,12 +62,11 @@ export default function UpdateItinerary() {
     }
 
     return (
-        <main>
-            <section className={styles.container}>
-                <h1>Edit your itinerary</h1>
-                <form onSubmit={handleSubmit} className={styles.form}> 
+        <section className={styles.container}>
+            <h1>Edit your itinerary</h1>
+            <form onSubmit={handleSubmit} className={styles.form}> 
                     
-                    <div className={styles.itineraryForm}>
+                <div className={styles.itineraryForm}>
                     <label htmlFor="trip_name">Trip Name:</label>
                     <input
                         type="text"
@@ -105,7 +108,6 @@ export default function UpdateItinerary() {
                 </div>
                 </form>
             </section>
-        </main>
     )
 
 }

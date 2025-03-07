@@ -11,7 +11,7 @@ import AllItineraries from './components/AllItineraries/AllItineraries'
 import SingleItinerary from './components/SingleItinerary/SingleItinerary'
 import CreateItinerary from './components/CreateItinerary/CreateItinerary'
 import UpdateItinerary from './components/UpdateItinerary/UpdateItinerary'
-import Navbar from './components/NavBar/NavBar'
+import NavMenu from './components/NavMenu/NavMenu'
 
 function App() {
   
@@ -19,7 +19,7 @@ function App() {
   return (
     <>
     <div>
-    <Navbar />
+    <NavMenu />
     <NavLink to = "/">Home</NavLink>
       <NavLink to = "/seasons/">Explore Seasons </NavLink>
       <NavLink to = "/locations/">All Locations </NavLink>
@@ -40,8 +40,6 @@ function App() {
     </main>
     </div>
       
-
-
     </>
   )
 }

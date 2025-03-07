@@ -36,41 +36,45 @@ export default function AllItineraries() {
             <section>
                 <h1>Your upcoming trips:</h1>
 
-                
+
                 <button onClick={() => setShowCreateModal(true)} className={styles.button}>
                     + Add New Trip
                 </button>
 
-                
+
                 <ModalComponent show={showCreateModal} handleClose={() => setShowCreateModal(false)} title="Create Itinerary">
-                    <CreateItinerary 
-                        handleClose={() => setShowCreateModal(false)} 
-                        triggerLoginModal={() => setShowLogin(true)} 
+                    <CreateItinerary
+                        handleClose={() => setShowCreateModal(false)}
+                        triggerLoginModal={() => setShowLogin(true)}
                     />
                 </ModalComponent>
 
                 <ModalComponent show={showLogin} handleClose={() => setShowLogin(false)} title="Login">
                     <Login handleClose={() => setShowLogin(false)} />
                 </ModalComponent>
-        
-                {isLoading
-                ? <p>Loading Itineraries...</p>
-                : itineraries.length > 0
-                ? itineraries.map((itinerary) => {
-                    return (
-                        
-                        <Link to={`/itineraries/${itinerary.id}`} key={itinerary.id}>
-                        <div className={styles.itineraryCard}>
-                            <h3>{itinerary.trip_name}</h3>
-                            <p>Start date: {new Date(itinerary.trip_start_date).toDateString()}</p>
-                            <p>End date: {new Date(itinerary.trip_end_date).toDateString()}</p>
-                                                        
-                        </div>
-                        </Link>
-                    )
-                })
-                : <p>No itineraries found</p>
-            }
+
+                {isLoading 
+                ?
+                    <p className={styles.loadingText}>Loading Itineraries...</p>
+                : itineraries.length > 0 
+                ? 
+                    <div className={styles.itineraryGrid}>
+                        {itineraries.map((itinerary) => (
+                            <Link to={`/itineraries/${itinerary.id}`} key={itinerary.id} className={styles.itineraryLink}>
+                                <div className={styles.itineraryCard}>
+                                    <h3 className={styles.itineraryTitle}>{itinerary.trip_name}</h3>
+                                    <p className={styles.itineraryDate}>
+                                        <strong>Start date:</strong> {new Date(itinerary.trip_start_date).toDateString()}
+                                    </p>
+                                    <p className={styles.itineraryDate}>
+                                        <strong>End date:</strong> {new Date(itinerary.trip_end_date).toDateString()}
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                : <p className={styles.noItineraries}>No itineraries found</p>
+                }
             </section>
         </main>
     )

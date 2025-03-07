@@ -3,6 +3,8 @@ import { useParams, Link, useNavigate } from "react-router"
 import { itineraryDelete, itineraryShow } from "../../services/itineraryService"
 import { addLocationVisitDate, updateLocationVisitDate, removeLocationFromItinerary } from "../../services/locationService"
 import { UserContext } from "../../contexts/UserContext"
+import ModalComponent from "../ModalComponent/ModalComponent"
+import UpdateItinerary from "../UpdateItinerary/UpdateItinerary"
 
 import styles from "./SingleItinerary.module.css"
 
@@ -13,6 +15,7 @@ export default function SingleItinerary() {
     const [isLoading, setIsLoading] = useState(true)
     const [editLocationId, setEditLocationId] = useState(null)
     const [selectedDate, setSelectedDate] = useState("")
+    const [showEditModal, setShowEditModal] = useState(false)
 
     const { itineraryId } = useParams()
     const { user } = useContext(UserContext)
@@ -96,86 +99,113 @@ export default function SingleItinerary() {
     }
 
     return (
-        <main>
+        <main className={styles.singleItineraryContainer}>
             <section>
-            <h1>Trip name: {itinerary?.trip_name}</h1>
-                <h1>
+                <h1 className={styles.itineraryTitle}>Trip name: {itinerary?.trip_name}</h1>
+                <h2 className={styles.itineraryDates}>
                     {itinerary?.trip_start_date
                         ? new Date(itinerary.trip_start_date).toDateString()
                         : "Start date not set"} - {" "}
                     {itinerary?.trip_end_date
                         ? new Date(itinerary.trip_end_date).toDateString()
                         : "End date not set"}
-                </h1>
-                <div>
-                    <Link to={`/itineraries/${itineraryId}/edit/`} className={styles.button}>
+                </h2>
+    
+                <div className={styles.buttonContainer}>
+                    <button onClick={() => setShowEditModal(true)} className={styles.button}>
                         Edit your trip
-                    </Link>
+                    </button>
+    
                     <button onClick={handleDelete} className={styles.button}>
                         Delete this trip
                     </button>
                 </div>
-
+    
                 {isLoading
-                    ? <p>Loading Locations...</p>
+                    ? <p className={styles.loadingText}>Loading Locations...</p>
                     : itinerary
-                        ? <div>
-                            <h3>Locations:</h3>
+                        ? <div className={styles.locationsContainer}>
+                            <h3 className={styles.locationsHeading}>Locations:</h3>
                             {itinerary?.locations?.length > 0
                                 ? itinerary.locations.map((locationData) => (
                                     <div key={locationData.id} className={styles.locationCard}>
-                                        <h4>{locationData.location?.name}</h4>
-                                        <p>{locationData.location?.description}</p>
-
-                                        <p>Visit Date:{" "}
+                                        <h4 className={styles.locationTitle}>{locationData.location?.name}</h4>
+                                        <p className={styles.locationDescription}>{locationData.location?.description}</p>
+    
+                                        <p className={styles.visitDate}>
+                                            Visit Date:{" "}
                                             {locationData.location_visit_date
                                                 ? new Date(locationData.location_visit_date).toLocaleDateString("en-GB")
                                                 : "No date set"}
                                         </p>
-
+    
                                         {editLocationId === locationData.location.id
-                                            ? <div>
+                                            ? <div className={styles.datePickerContainer}>
                                                 <input
                                                     type="date"
+                                                    className={styles.dateInput}
                                                     value={selectedDate}
-                                                    onChange={(event) => setSelectedDate(event.target.value)} />
-                                                <button onClick={() => handleDateSave(editLocationId, locationData.location_visit_date || null)}>
+                                                    onChange={(event) => setSelectedDate(event.target.value)}
+                                                />
+                                                <button
+                                                    onClick={() => handleDateSave(editLocationId, locationData.location_visit_date || null)}
+                                                    className={styles.saveButton}
+                                                >
                                                     Save
                                                 </button>
-
-                                                <button onClick={() => setEditLocationId(null)}>
+    
+                                                <button
+                                                    onClick={() => setEditLocationId(null)}
+                                                    className={styles.cancelButton}
+                                                >
                                                     Cancel
                                                 </button>
                                             </div>
-
+    
                                             : locationData.location_visit_date
-                                                ? <button onClick={() => {
-                                                    setEditLocationId(locationData.location?.id)
-                                                    setSelectedDate(locationData.location_visit_date || "")
-                                                }}>
+                                                ? <button
+                                                    onClick={() => {
+                                                        setEditLocationId(locationData.location?.id)
+                                                        setSelectedDate(locationData.location_visit_date || "")
+                                                    }}
+                                                    className={styles.button}
+                                                >
                                                     Edit date
                                                 </button>
-
-                                                : <button onClick={() => {
-                                                    setEditLocationId(locationData.location?.id)
-                                                    setSelectedDate("")}}>
+    
+                                                : <button
+                                                    onClick={() => {
+                                                        setEditLocationId(locationData.location?.id)
+                                                        setSelectedDate("")
+                                                    }}
+                                                    className={styles.button}
+                                                >
                                                     Add visit date
                                                 </button>
                                         }
-                                            
-                                            <button onClick={() => handleRemoveLocation(locationData.location.id)} className={styles.removeButton}>
-                                                Remove Location
-                                            </button>
+    
+                                        <button
+                                            onClick={() => handleRemoveLocation(locationData.location.id)}
+                                            className={styles.button}
+                                        >
+                                            Remove Location
+                                        </button>
                                     </div>
                                 ))
-                                : <div><p>No locations added yet! 
-                                <Link to={`/locations/`} className={styles.button}>Browse where to go!</Link>
-                                </p></div>
+                                : <div className={styles.noLocations}>
+                                    <p>No locations added yet! 
+                                        <Link to={`/locations/`} className={styles.button}>Browse where to go!</Link>
+                                    </p>
+                                </div>
                             }
                         </div>
-                        : <p>Itinerary not found</p>
+                        : <p className={styles.errorText}>Itinerary not found</p>
                 }
             </section>
+    
+            <ModalComponent show={showEditModal} handleClose={() => setShowEditModal(false)} title="Edit Itinerary">
+                <UpdateItinerary itineraryId={itineraryId} handleClose={() => setShowEditModal(false)} />
+            </ModalComponent>
         </main>
     )
 }

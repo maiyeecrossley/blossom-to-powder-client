@@ -37,3 +37,21 @@ a.button {
     display: inline-block;
     text-align: center;
 }
+
+.navbar-custom {
+    background-color: var(--forest-green);
+    padding: 10px 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+main {
+    padding-top: 80px; 
+}
+
+.navbar-custom .btn {
+    margin-left: 10px;
+}

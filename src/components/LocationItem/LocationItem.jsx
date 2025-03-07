@@ -27,8 +27,7 @@ export default function LocationItem({
                         itineraries={itineraries}
                         selectedItineraries={selectedItineraries}
                         locationId={location.id}
-                        handleSelectChange={handleSelectChange}
-                    />
+                        handleSelectChange={handleSelectChange}/>
 
                     {noItineraries && location.id === 1 && (
                         <div className={styles.noItineraries}>

@@ -1,23 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Sriracha&display=swap');
 
-/* :root {
-    --text-primary: #d5d5d5;
-    --text-secondary: #8d8d8d;
-    --background-primary: #e3cfe3;
-    --background-secondary: #EAE0D5;
-    --background-tertiary: #C1D3C8;
-    --cherry-blossom: #f2cfe3;
-    --autumn-leaf: #dca455; 
-    --forest-green: #9fcb91; 
-    --misty-blue: #8ba8b8;
-    --darker-blue: #788a94;
-    --border: #A5A5A5;
-    --brand: #D88A1A;
-    --brand-hover: #B76E1B;
-    --brand-disabled: #9E5C16;
-    --error: #E74C3C;
-} */
-
 :root {
 
   --text-primary: #3b3b3b;
@@ -29,7 +11,7 @@
   --autumn-leaf: #e5b07e;
   --forest-green: #a5c8a6; 
   --misty-blue: #9cb5c3;
-  --darker-blue: #7c98a1; 
+  --darker-blue: #7a8db4; 
   --border: #b5b5b5;
   --brand: #e8a879; 
   --brand-hover: #d2956b; 
@@ -92,27 +74,6 @@ html, body, #root {
     padding: 0;
   }
   
-.button {
-    font-family: "Merriweather", serif;
-    font-size: 12px;
-    color: white;
-    background-color: var(--forest-green);
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
-}
-
-.button:hover {
-    background-color: var(--misty-blue);
-}
-
-.button:disabled {
-  background-color: var(--brand-disabled);
-  cursor: not-allowed;
-}
-
 .tagline {
     font-family: "Merriweather", sans-serif;
     font-size: 22px;

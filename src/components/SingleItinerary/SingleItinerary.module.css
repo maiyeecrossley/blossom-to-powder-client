@@ -1,0 +1,168 @@
+.singleItineraryContainer {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+
+.itineraryTitle {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.itineraryDates {
+    font-size: 18px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+
+.button {
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+    color: white;
+    background-color: var(--misty-blue);
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button:hover {
+    background-color: var(--cherry-blossom);
+}
+
+
+.locationsContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.locationsHeading {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+
+.locationCard {
+    max-width: 350px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--misty-blue);
+    text-align: center;
+    font-family: "Merriweather", serif;
+}
+
+/* ✅ Location Titles & Description */
+.locationTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.locationDescription {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* ✅ Visit Date */
+.visitDate {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-top: 8px;
+}
+
+/* ✅ Date Picker Styling */
+.datePickerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* ✅ Custom Date Input */
+.dateInput {
+    background-color: var(--background-primary);
+    border: 2px solid var(--border);
+    color: var(--text-primary);
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+}
+
+/* ✅ Save & Cancel Buttons */
+.saveButton {
+    background-color: var(--forest-green);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    font-family: "Merriweather", serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.saveButton:hover {
+    background-color: var(--autumn-leaf);
+}
+
+.cancelButton {
+    background-color: var(--cherry-blossom);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    font-family: "Merriweather", serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancelButton:hover {
+    background-color: var(--misty-blue);
+}
+
+/* ✅ No Locations */
+.noLocations {
+    text-align: center;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* ✅ Error Text */
+.errorText {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--error);
+}
+
+/* ✅ Loading Text */
+.loadingText {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-secondary);
+}

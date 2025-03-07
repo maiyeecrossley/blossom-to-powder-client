@@ -1,0 +1,100 @@
+.button {
+    display: inline-block;
+    background-color: var(--misty-blue);
+    color: var(--text-primary);
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px; 
+    font-weight: bold;
+    font-family: "Merriweather", serif;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: var(--cherry-blossom); 
+    color: var(--background-primary);
+    transform: scale(1.03);
+    text-decoration: none;
+}
+
+.button:active {
+    transform: scale(0.97);
+}
+
+.button:disabled {
+    background-color: var(--darker-blue);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+a.button {
+    display: inline-block;
+    text-align: center;
+}
+
+
+.itineraryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+.itineraryCard {
+    max-width: 350px;
+    background-color: var(--misty-blue);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: "Merriweather", serif;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    border: 2px solid var(--border);
+}
+
+.itineraryCard:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.itineraryTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.itineraryDate {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+
+.noItineraries {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+
+.loadingText {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+
+.itineraryLink {
+    text-decoration: none;
+}

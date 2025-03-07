@@ -4,11 +4,11 @@ p {
 
 .seasonCard {
     width: 100%;
-    min-height: 350px; /* ✅ Set a minimum height instead of fixed height */
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s ease-in-out; /* ✅ Smooth expansion */
+    transition: all 0.3s ease-in-out; 
 }
 
 .seasonCard:hover {
@@ -96,6 +96,6 @@ p {
 
 
 .winterCard {
-    background: var(--misty-blue);
-    border: 2px solid var(--misty-blue);
+    background: var(--darker-blue);
+    border: 2px solid var(--darker-blue);
 }
