@@ -2,6 +2,10 @@ p {
     font-family: "Merriweather", serif;
 }
 
+.seasonMain h1 {
+    margin-top: 1em;
+}
+
 .seasonsContainer {
     width: 100%;
     display: flex;
@@ -16,7 +20,8 @@ p {
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.3s ease-in-out; 
-    margin-bottom: 100px;
+    margin-top: 1rem;
+    /* margin-bottom: 100px; */
 }
 
 .seasonCard:hover {
@@ -31,11 +36,11 @@ p {
     border-radius: 12px 12px 0 0;
 }
 
-
 .cardBody {
     flex-grow: 1;
     background: transparent !important;
-    padding: 10px !important;
+    padding: 1rem !important;
+    margin-top: 0.5rem;
 }
 
 .seasonTitle {
@@ -75,7 +80,6 @@ p {
     -webkit-line-clamp: unset;
     overflow: visible;
 }
-
 
 .seasonLink {
     display: inline-block;

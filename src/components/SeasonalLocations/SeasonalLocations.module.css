@@ -1,9 +1,9 @@
 .seasonMain {
-    padding-top: 120px; /* ✅ Adjust if needed */
+    padding-top: 120px; 
 }
 
 .seasonTitle {
-    margin-top: 30px; /* ✅ Push title down */
+    margin-top: 30px;
     text-align: center;
     font-family: "Merriweather", serif;
     font-size: 28px;

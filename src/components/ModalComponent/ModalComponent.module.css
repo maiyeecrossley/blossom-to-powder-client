@@ -1,19 +1,19 @@
+.customModal {
+    border-radius: 12px;
+    animation: fadeIn 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.customBackdrop {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 .modalHeader {
     background-color: var(--forest-green);
     color: var(--text-primary);
-    border-bottom: none;
     font-size: 20px;
     font-weight: bold;
-    padding: 15px;
     text-align: center;
-    border-radius: 12px 12px 0 0;
-}
-
-.modalTitle {
-    font-size: 22px;
-    font-weight: bold;
-    background-color: var(--forest-green);
-    color: var(--text-secondary);
 }
 
 .modalBody {
@@ -24,130 +24,61 @@
     
 }
 
+.modalBody h1 {
+    margin-top: 1rem;
+}
+
 .modalFooter {
-    border-top: none;
-    padding: 15px;
     text-align: center;
     background-color: var(--forest-green);
+    
 }
-
-.closeButton {
-    display: inline-block;
-    background-color: var(--misty-blue);
-    color: var(--text-primary);
-    border: none;
-    padding: 8px 16px; 
-    font-size: 14px; 
-    font-weight: bold;
-    font-family: "Merriweather", serif;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.closeButton:hover {
-    background-color: var(--cherry-blossom); 
-    color: var(--background-primary);
-    transform: scale(1.03);
-    text-decoration: none;
-}
-
 
 .modalBody input[type="text"],
 .modalBody input[type="email"],
-.modalBody input[type="password"] 
+.modalBody input[type="password"],
 .modalBody input[type="date"] {
     background-color: var(--background-primary);
-    border: 2px solid var(--border);
+    border: 2px solid var(--text-secondary);
     color: var(--text-primary);
-    padding-bottom: 10px;
     width: 100%;
     font-size: 16px;
-    transition: border-color 0.3s ease-in-out;
-
+    transition: border-color 0.3s;
 }
 
-.modalBody div {
+.modalBody input:focus {
+    border-color: var(--autumn-leaf);
+    outline: none;
+}
+
+.modalBody label {
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
     background-color: var(--forest-green);
 }
 
-.modalBody input[type="date"]:focus {
-    background-color: var(--background-primary);
-    border-color: var(--autumn-leaf);
-}
-
-
-.modalBody input[type="date"]::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.8;
-}
-
-
-.modalBody input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(50%); 
-    cursor: pointer;
-}
-
 .modalBody button {
-    display: inline-block;
     background-color: var(--misty-blue);
     color: var(--text-primary);
     border: none;
-    padding: 8px 16px; 
-    font-size: 14px; 
+    padding: 8px 16px;
+    font-size: 14px;
     font-weight: bold;
     font-family: "Merriweather", serif;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    text-align: center;
-    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.1);
-
+    margin-top: 10px;
 }
 
 .modalBody button:hover {
-    background-color: var(--cherry-blossom); 
+    background-color: var(--cherry-blossom);
     color: var(--background-primary);
     transform: scale(1.03);
-    text-decoration: none;
 }
-
-
-.modalBody input:focus {
-    background-color: var(--background-primary);
-    border-color: var(--autumn-leaf);
-}
-
-
-.modalBody input::placeholder {
-    background-color: var(--background-primary);
-    color: var(--text-secondary);
-    opacity: 0.8;
-}
-
-.modalBody label {
-    background-color: var(--forest-green);
-    color: var(--text-primary); 
-    font-size: 16px;
-    font-weight: bold;
-    display: block; 
-
-}
-
-.modalBody label::before {
-    background-color: var(--forest-green);
-}
-
-.modalBody .form-label {
-    background-color: var(--forest-green);
-    color: var(--text-primary);
-    font-weight: bold;
-}
-
 
 @keyframes fadeIn {
     from {

@@ -39,27 +39,47 @@ main {
     max-width: 100%;
 }
 
-
 nav {
-  background-image: url("https://res.cloudinary.com/ddwlpgsjq/image/upload/v1741319129/Blossom_to_Powder_1_wopefe.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 1000;
-  position: relative;
-  height: 150px;
+    background-image: url("https://res.cloudinary.com/ddwlpgsjq/image/upload/v1741319129/Blossom_to_Powder_1_wopefe.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1000;
+    position: relative;
+    height: 150px;
 }
 
-div {
-    background-color: var(--background-primary)
-}
 
-h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
+h1 {
+    font-size: 6em;
     font-family: "Sriracha", serif;
-    color:var(--text-primary)
-}
+    color: var(--text-primary);
 
+} 
+h2 {
+    font-size: 4em;
+    font-family: "Sriracha", serif;
+    color: var(--text-primary);
+
+} 
+h3 {
+    font-size: 3em;
+    font-family: "Sriracha", serif;
+    color: var(--text-primary);
+
+} 
+h4 {
+    font-size: 2em;
+    font-family: "Sriracha", serif;
+    color: var(--text-primary);
+
+} 
+h5 {
+    font-size: 1em;
+    font-family: "Sriracha", serif;
+    color: var(--text-primary);
+
+} 
 
 html {
     background-color: var(--background-primary);
