@@ -95,7 +95,8 @@ Working within the time limit meant that I had to make quick decisions with UI l
 - The importance of balancing speed with flexibility. By choosing Bootstrap modals, although has saved me time in the short run, it also taught me to weigh up how much custom styling I might need later on.
 
 ## Bugs
-I'm not currently aware of any bugs at this moment in time, particularly when demoing the application.
+At the moment, when you navigate to "My Trips", then "+Add New Trip", the Login dialog appears in front of the creating itinerary form. This causes the application to freeze unless you have an account and are able to log in.
+I will be addressing this bug in due course.
 
 
 ## Future Improvements
