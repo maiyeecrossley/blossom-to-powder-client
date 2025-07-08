@@ -105,6 +105,7 @@ I will be addressing this bug in due course.
 - Improve some of the styles, paying more attention to margins
 - User profiles to allow users to view and update their account details, and maybe see a history of their past itineraries.
 - More filtering options to better align with the search tags.
+- I will also be adding more locations for users to browse through.
 
 #### Asset Attributions
 - [Japan in Spring - Pinterest](https://i.pinimg.com/736x/35/d9/13/35d9139d6ae9e50a78c2338c0069d1bb.jpg)
