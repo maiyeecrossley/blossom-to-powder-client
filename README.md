@@ -31,6 +31,8 @@ This solo project took 10 days from initial planning to deployment. I used tools
 - CSS
 - Git
 - GitHub
+- Bootstrap library
+- MUI library
 - Postman (for testing)
 - Heroku (for back-end hosting)
 - Netlify (for front-end hosting)
